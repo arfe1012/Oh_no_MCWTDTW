@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Line
+  m_Name: PointOfLine
   m_Shader: {fileID: -6465566751694194690, guid: 2fda7fc36c8aa7e4cb0f2586eef0f3a6, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: cb0ec9539d236134892ab9f0463bba93, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8cbccd646e4938c40bad1fa97962e883, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask:
@@ -42,15 +42,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _NoiseAmount: 0.2
-    - _NoisePower: 2
-    - _NoiseScale: 25
+    - _DissolvableAmount: 0.413
+    - _NoiseAmount: 0.11
+    - _NoisePower: -0.25
+    - _NoiseScale: 126.7
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0.28976935, g: 0, b: 0.011887974, a: 1}
-    - _MainSpeed: {r: -0.5, g: 0, b: 0, a: 0}
-    - _NoiseSpeed: {r: -0.7, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.33962262, g: 0, b: 0.13385181, a: 1}
+    - _MainSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _NoiseSpeed: {r: -0.46, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7626320978043072686
 MonoBehaviour:
