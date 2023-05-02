@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_FireNew
+  m_Name: FireplaceMaterial
   m_Shader: {fileID: -6465566751694194690, guid: eb0e6dad86df2d04085b171faa81afe0, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
