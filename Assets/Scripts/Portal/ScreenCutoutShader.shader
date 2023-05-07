@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'UNITY_INSTANCE_ID' with 'UNITY_VERTEX_INPUT_INSTANCE_ID'
+
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 Shader "Unlit/ScreenCutoutShader"
@@ -26,15 +28,18 @@ Shader "Unlit/ScreenCutoutShader"
 
 			struct appdata
 			{
+				UNITY_VERTEX_INPUT_INSTANCE_ID //VR XR
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
 			};
 
 			struct v2f
 			{
+				UNITY_VERTEX_OUTPUT_STEREO //VR XR
 				//float2 uv : TEXCOORD0;
 				float4 vertex : SV_POSITION;
 				float4 screenPos : TEXCOORD1;
+				
 			};
 
 			v2f vert (appdata v)
@@ -42,6 +47,8 @@ Shader "Unlit/ScreenCutoutShader"
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.screenPos = ComputeScreenPos(o.vertex);
+				UNITY_SETUP_INSTANCE_ID(v); 
+				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); //VR XR
 				return o;
 			}
 			
