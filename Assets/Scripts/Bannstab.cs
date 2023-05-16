@@ -6,6 +6,7 @@ public class Bannstab : MonoBehaviour
 {
     public GameObject Flame1;
     public GameObject Flame2;
+    public GameObject Line;
     // Start is called before the first frame update
     void Start()
     {
