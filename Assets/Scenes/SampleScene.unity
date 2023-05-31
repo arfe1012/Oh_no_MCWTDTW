@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.008442513, g: 0.063520305, b: 0.1980557, a: 1}
+  m_IndirectSpecularColor: {r: 0.008455425, g: 0.06357148, b: 0.19812238, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -601,6 +601,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 45543320}
+  - component: {fileID: 45543321}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -622,9 +623,26 @@ Transform:
   m_Children:
   - {fileID: 1959465590}
   - {fileID: 506524643}
+  - {fileID: 619540982}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &45543321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45543319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f42be0b92df9e946b78f079d78e887a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 26e4b52ccfb2e2144843ab4ec8e47a8d, type: 2}
+  active: 0
+  deactive: 0
+  PortalRender: {fileID: 1927307292}
 --- !u!1001 &51357547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5154,6 +5172,89 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.45, z: 0.1}
   m_Center: {x: 0, y: 0.4, z: 0}
+--- !u!1 &619540981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 619540982}
+  - component: {fileID: 619540984}
+  - component: {fileID: 619540983}
+  m_Layer: 0
+  m_Name: SpawnFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &619540982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619540981}
+  m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: -0, w: 0}
+  m_LocalPosition: {x: -0.035037283, y: -1.0984476, z: 2.2397993}
+  m_LocalScale: {x: 96.67843, y: 96.67847, z: 96.67845}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 45543320}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &619540983
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619540981}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 26e4b52ccfb2e2144843ab4ec8e47a8d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &619540984
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619540981}
+  m_Mesh: {fileID: -462981019419857548, guid: 5ac4c4c21a090d14c81579406ff29efa, type: 3}
 --- !u!1 &620174694
 GameObject:
   m_ObjectHideFlags: 0
@@ -19904,6 +20005,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.45, z: 0.1}
   m_Center: {x: 0, y: 0.4, z: 0}
+--- !u!23 &1927307292 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2395249672585539489, guid: 59e6a9bb60e707d498cabca0c9785be5, type: 3}
+  m_PrefabInstance: {fileID: 1405905436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1927861123
 PrefabInstance:
   m_ObjectHideFlags: 0
