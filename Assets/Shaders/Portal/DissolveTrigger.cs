@@ -6,68 +6,43 @@ public class DissolveTrigger : MonoBehaviour
 {
     [SerializeField] private Material material;
 
-    private float dissolveAmount;
-    public bool active;
-    public bool deactive;
-    public MeshRenderer PortalRender;
-
+    public float dissolveAmount;
+    public bool switchPortal;
+    public MeshRenderer InselRenderer;
+    public MeshRenderer KellerRenderer;
 
     // Update is called once per frame
     void Update()
     {
-      if (active)
-      {
-            Activate();
-            //active = false;
-
-      }
-      if (active)
-      {
-          Deactivate();
-          deactive = false;
-      }
-
-
-    }
-
-
-    void Activate()
-    {
-        while (dissolveAmount != 1)
+        if (switchPortal)
         {
-            dissolveAmount = Mathf.Clamp(dissolveAmount + Time.deltaTime, -1, 1);
+            dissolveAmount = Mathf.Clamp01(dissolveAmount + Time.deltaTime);
             material.SetFloat("_DissolveAmount", dissolveAmount);
+        }
+        if (switchPortal && dissolveAmount >= 1)
+        {
+            switchPortal = false;
+
+            if (InselRenderer.enabled)
+            {
+                InselRenderer.enabled = false;
+                KellerRenderer.enabled = true;
+            }
+            else
+            {
+                InselRenderer.enabled = true;
+                KellerRenderer.enabled = false;
+            }
             
         }
-        PortalRender.enabled = true;
-
-        while (dissolveAmount != -1)
+        if (!switchPortal)
         {
-            dissolveAmount = Mathf.Clamp(dissolveAmount - Time.deltaTime, -1, 1);
+            dissolveAmount = Mathf.Clamp01(dissolveAmount - Time.deltaTime);
             material.SetFloat("_DissolveAmount", dissolveAmount);
-
         }
 
     }
 
-    void Deactivate()
-    {
-        while (dissolveAmount != 1)
-        {
-            dissolveAmount = Mathf.Clamp(dissolveAmount + Time.deltaTime, -1, 1);
-            material.SetFloat("_DissolveAmount", dissolveAmount);
-
-        }
-        PortalRender.enabled = false;
-
-        while (dissolveAmount != -1)
-        {
-            dissolveAmount = Mathf.Clamp(dissolveAmount - Time.deltaTime, -1, 1);
-            material.SetFloat("_DissolveAmount", dissolveAmount);
-
-        }
-
-    }
 
 }
 

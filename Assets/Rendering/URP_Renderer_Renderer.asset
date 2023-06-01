@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: Stencil2 Transparent
+  m_Name: KellerTransparent
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: Stencil2 Transparent
+    passTag: KellerTransparent
     Event: 500
     filterSettings:
       RenderQueueType: 1
@@ -49,11 +49,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
+  m_Name: FloatingTransparent
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: RenderObjects
+    passTag: FloatingTransparent
     Event: 500
     filterSettings:
       RenderQueueType: 1
@@ -88,11 +88,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: FloatingIslands
+  m_Name: FlOp
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: FloatingIslands
+    passTag: FlOp
     Event: 300
     filterSettings:
       RenderQueueType: 0
@@ -132,11 +132,11 @@ MonoBehaviour:
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
+  - {fileID: -6634618501824928362}
   - {fileID: -2098650529552947870}
   - {fileID: 9016996574199190957}
   - {fileID: -2838380028615998859}
-  - {fileID: -6634618501824928362}
-  m_RendererFeatureMap: 62a54f667618e0e2ad950e329cce227d75c2c700670c9cd896a57dd29f19eda3
+  m_RendererFeatureMap: 96a57dd29f19eda362a54f667618e0e2ad950e329cce227d75c2c700670c9cd8
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -183,11 +183,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: Stencil2 Opaque
+  m_Name: KeOp
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: Stencil2 Opaque
+    passTag: KeOp
     Event: 300
     filterSettings:
       RenderQueueType: 0
