@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Kerze : MonoBehaviour
 {
+    private GameObject ownFlame1;
+    private GameObject ownFlame2;
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.GetChild(1).gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -15,19 +17,11 @@ public class Kerze : MonoBehaviour
     {
         
     }
-
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        //if(collision.gameObject.name == "BannstabFlamme1")
-        //{
-            Debug.Log("Collision enter detected" + collision.gameObject.name);
-        //}
-    }
-    void OnCollisionExit(Collision collision)
-    {
-        //if (collision.gameObject.name == "BannstabFlamme1")
-        //{
-            Debug.Log("Collision exit detected" + collision.gameObject.name);
-        //}
+        if(other.gameObject.name == "BannstabFlamme1" || other.gameObject.name == "BannstabFlamme2")
+        {
+            transform.GetChild(1).gameObject.SetActive(true);
+        }
     }
 }
