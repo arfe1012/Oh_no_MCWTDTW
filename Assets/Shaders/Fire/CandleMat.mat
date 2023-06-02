@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8398583007361766459
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CandlelightMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: eb0e6dad86df2d04085b171faa81afe0, type: 3}
+  m_Name: CandleMat
+  m_Shader: {fileID: -6465566751694194690, guid: d8c6883cdb56ba645bf62244785fc3c3, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -51,14 +38,27 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DissolveAmount: -1.18
-    - _DissolveScale: 1.65
-    - _DistortionAmount: -0.06
-    - _DistortionScale: 4.42
+    - _DissolveAmount: -0.88
+    - _DissolveScale: 1.05
+    - _DistortionAmount: 0.04
+    - _DistortionScale: 5
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 32.58816, g: 31.629951, b: 9.991653, a: 0}
-    - _DissolveSpeed: {r: -0.6, g: -0.5, b: 0, a: 0}
-    - _DistortionSpeed: {r: 0, g: -0.97, b: 0, a: 0}
+    - _Color: {r: 19.46857, g: 2.650172, b: 0.5096485, a: 0}
+    - _DissolveSpeed: {r: -0.1, g: -0.5, b: 0, a: 0}
+    - _DistortionSpeed: {r: 0, g: -0.2, b: 0, a: 0}
   m_BuildTextureStacks: []
+--- !u!114 &1966357167656793993
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
