@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerColliding : MonoBehaviour
 {
-    public bool playerCollision = false;
+    public bool playerJustEntered = false;
+    public bool playerJustExited = false;
+    public bool playerInCollider = false;
     public GameObject Player;
 
 
@@ -14,7 +16,8 @@ public class PlayerColliding : MonoBehaviour
         if (other.gameObject == Player)
         {
 
-            playerCollision = true;
+            playerJustEntered = true;  //Wird vom Portal wieder ausgeschaltet, wenn er die Info verarbeitet hat
+            playerInCollider = true;
         }
     }
 
@@ -24,8 +27,9 @@ public class PlayerColliding : MonoBehaviour
 
         if (other.gameObject == Player)
         {
-
-            playerCollision = false;
+            
+            playerJustExited = true; //Wird vom Portal wieder ausgeschaltet, wenn er die Info verarbeitet hat
+            playerInCollider = false;
         }
     }
 }

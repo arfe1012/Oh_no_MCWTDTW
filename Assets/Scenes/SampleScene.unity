@@ -643,7 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 26e4b52ccfb2e2144843ab4ec8e47a8d, type: 2}
   dissolveAmount: 0
-  switchPortal: 0
+  switchPortal: 1
   InselRenderer: {fileID: 656161472}
   KellerRenderer: {fileID: 1780111856}
   Player: {fileID: 620174694}
@@ -1200,7 +1200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7194a50f4fa1dfe449ea71964e670a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCollision: 0
+  playerJustEntered: 0
+  playerJustExited: 0
+  playerInCollider: 0
   Player: {fileID: 620174694}
 --- !u!65 &106678955
 BoxCollider:
@@ -5519,7 +5521,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620174694}
-  m_LocalRotation: {x: -0, y: 0.8612243, z: -0, w: 0.5082252}
+  m_LocalRotation: {x: -0, y: 0.76135564, z: -0, w: 0.6483345}
   m_LocalPosition: {x: 5.6, y: 0.61, z: 5.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5528,7 +5530,7 @@ Transform:
   - {fileID: 369299934}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 118.909, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 99.168, z: 0}
 --- !u!114 &620174698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7235,7 +7237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7194a50f4fa1dfe449ea71964e670a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCollision: 0
+  playerJustEntered: 0
+  playerJustExited: 0
+  playerInCollider: 0
   Player: {fileID: 620174694}
 --- !u!65 &886690176
 BoxCollider:

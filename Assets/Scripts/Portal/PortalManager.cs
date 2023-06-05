@@ -29,6 +29,12 @@ public class PortalManager : MonoBehaviour
     private void Start()
     {
         additionalCameraData = Camera.transform.GetComponent<UniversalAdditionalCameraData>();
+
+
+        if (InselRenderer.enabled)
+        {
+            fliegendeInselActive = true;
+        }
     }
 
 
@@ -44,19 +50,44 @@ public class PortalManager : MonoBehaviour
         
         if (fliegendeInselActive) // Aktiviert die Sicht auf die Fliegenden Inseln permanent, wenn der Character von Kellerseite durch das Portal steigt
         {
-            Debug.Log("FliegendeInselactive");
-            if (KellerCollider.GetComponent<PlayerColliding>().playerCollision == false && DimensionCollider.GetComponent<PlayerColliding>().playerCollision == false)
+
+
+            
+            if (KellerCollider.GetComponent<PlayerColliding>().playerInCollider == false && DimensionCollider.GetComponent<PlayerColliding>().playerInCollider == false && KellerCollider.GetComponent<PlayerColliding>().playerJustExited == false &&  DimensionCollider.GetComponent<PlayerColliding>().playerJustExited == false)
             {
-                
+                //Wenn der Spieler Sich in keinem der Portal Collider befindet oder befand, spaart sich der Portal Manager die Abfragen
             }
-            else if (KellerCollider.GetComponent<PlayerColliding>().playerCollision == true && DimensionCollider.GetComponent<PlayerColliding>().playerCollision == false)
+            else if (KellerCollider.GetComponent<PlayerColliding>().playerJustEntered == true && DimensionCollider.GetComponent<PlayerColliding>().playerInCollider == false)
             {
-                SetFiltering(0);
-            }
-            else if (KellerCollider.GetComponent<PlayerColliding>().playerCollision == false && DimensionCollider.GetComponent<PlayerColliding>().playerCollision == true)
-            {
+                //Wenn Der Spieler vom Keller ins Poral geht, Werden die Inseln permanent sichtbar
                 SetFiltering(1);
+                Debug.Log("Insel An");
+
             }
+            else if (KellerCollider.GetComponent<PlayerColliding>().playerJustExited == true && DimensionCollider.GetComponent<PlayerColliding>().playerInCollider == false)
+            {
+                //Wenn Der Spieler vom Keller ins Poral schaut, aber wieder zurück geht, Werden die Inseln wieder nur durchs Portal sichtbar
+                SetFiltering(0);
+                Debug.Log("Insel Aus");
+            }
+            else if (KellerCollider.GetComponent<PlayerColliding>().playerInCollider == true && DimensionCollider.GetComponent<PlayerColliding>().playerJustExited == true)
+            {
+                //Wenn Der Spieler die Dimension verlässt, switched das Spiel wieder zur einzigen Sicht durch das Portal
+                SetFiltering(0);
+                Debug.Log("Insel Aus");
+            }
+            else if (KellerCollider.GetComponent<PlayerColliding>().playerInCollider == true && DimensionCollider.GetComponent<PlayerColliding>().playerJustEntered == true)
+            {
+                //Wenn Der Spieler dann aber wieder zurück geht, wird die Dimension wieder eingeblendet
+                SetFiltering(1);
+                Debug.Log("Insel An");
+            }
+
+            //Wenn der Portal Manager alle Infos verarbeitet hat, stellt er die Bools von den Collidern wieder aus
+            KellerCollider.GetComponent<PlayerColliding>().playerJustEntered = false;
+            KellerCollider.GetComponent<PlayerColliding>().playerJustExited = false;
+            DimensionCollider.GetComponent<PlayerColliding>().playerJustEntered = false;
+            DimensionCollider.GetComponent<PlayerColliding>().playerJustExited = false;
         }
 
 
@@ -73,6 +104,7 @@ public class PortalManager : MonoBehaviour
 
         if (InselRenderer.enabled)
         {
+            //Tauscht die Renderer zum Keller (leer) aus
             InselRenderer.enabled = false;
             KellerRenderer.enabled = true;
 
@@ -80,6 +112,7 @@ public class PortalManager : MonoBehaviour
         }
         else
         {
+            //Tauscht die Renderer zur Insel aus
             InselRenderer.enabled = true;
             KellerRenderer.enabled = false;
 
@@ -98,6 +131,7 @@ public class PortalManager : MonoBehaviour
 
     public void SetFiltering(int index)
     {
+        //Ändert den Renderer der Camera. Es gibt einen Renderer pro Dimension und einen für den Keller
         additionalCameraData.SetRenderer(index);
     }
 
