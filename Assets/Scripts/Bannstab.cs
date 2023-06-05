@@ -7,24 +7,26 @@ public class Bannstab : MonoBehaviour
     public GameObject Flame1;
     public GameObject Flame2;
     public GameObject Line;
-    public GameObject[] flamesOfCandles;
-    private bool candlesAt0Activated = false;
-    private bool candlesAt1Activated = false;
-    private bool candlesAt2Activated = false;
-    private bool candlesAt3Activated = false;
-    private bool candlesAt4Activated = false;
+    public GameObject[] flamesOfCandles0;
+    public GameObject[] flamesOfCandles1;
+    public GameObject[] flamesOfCandles2;
+    public GameObject[] flamesOfCandles3;
+    public GameObject[] flamesOfCandles4;
     private Vector3 candle0 = new Vector3(-1, 0, (float)-0.65);
     private Vector3 candle1 = new Vector3((float)-1.04, 0, (float)0.6);
     private Vector3 candle2 = new Vector3((float)0.3, 0, -1);
-    private Vector3 candle3 = new Vector3((float)0.2, 0, (float)1.105); // 1, 0, (float)0.1
+    private Vector3 candle3 = new Vector3((float)0.2, 0, (float)1.105);
     private Vector3 candle4 = new Vector3(1, 0, (float)0.1);
-    private int index = 0;
-    private List<Vector3> drawingOrder;
+    private int lineRendererSize = 0;
+    private List<string> drawingOrder = new List<string>();
+    private bool firstCandleLit = false; // Only if the line should be connected to the Bannstab
+    private List<string> lastTwoCandles = new List<string>();
 
     // Start is called before the first frame update
     void Start()
     {
-        drawingOrder = new List<Vector3>();
+        lastTwoCandles.Add("");
+        lastTwoCandles.Add("");
         Flame1.SetActive(false);
         Flame2.SetActive(false);
         Line.GetComponent<LineRenderer>().positionCount = 0;
@@ -33,46 +35,7 @@ public class Bannstab : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (candlesAt0Active() && !candlesAt0Activated)
-        {
-            candlesAt0Activated = true;
-            Line.GetComponent<LineRenderer>().positionCount = index + 1;
-            Line.GetComponent<LineRenderer>().SetPosition(index, candle0);
-            drawingOrder.Add(candle0);
-            index++;
-        }
-        if (candlesAt1Active() && !candlesAt1Activated)
-        {
-            candlesAt1Activated = true;
-            Line.GetComponent<LineRenderer>().positionCount = index + 1;
-            Line.GetComponent<LineRenderer>().SetPosition(index, candle1);
-            drawingOrder.Add(candle1);
-            index++;
-        }
-        if (candlesAt2Active() && !candlesAt2Activated)
-        {
-            candlesAt2Activated = true;
-            Line.GetComponent<LineRenderer>().positionCount = index + 1;
-            Line.GetComponent<LineRenderer>().SetPosition(index, candle2);
-            drawingOrder.Add(candle2);
-            index++;
-        }
-        if (candlesAt3Active() && !candlesAt3Activated)
-        {
-            candlesAt3Activated = true;
-            Line.GetComponent<LineRenderer>().positionCount = index + 1;
-            Line.GetComponent<LineRenderer>().SetPosition(index, candle3);
-            drawingOrder.Add(candle3);
-            index++;
-        }
-        if (candlesAt4Active() && !candlesAt4Activated)
-        {
-            candlesAt4Activated = true;
-            Line.GetComponent<LineRenderer>().positionCount = index + 1;
-            Line.GetComponent<LineRenderer>().SetPosition(index, candle4);
-            drawingOrder.Add(candle4);
-            index++;
-        }
+
     }
 
     public void pullTrigger()
@@ -88,68 +51,123 @@ public class Bannstab : MonoBehaviour
         validateBannkreis();
     }
 
-    private bool candlesAt0Active()
+    private void OnTriggerEnter(Collider other)
     {
-        if (flamesOfCandles[0].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[1].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[2].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[3].transform.GetChild(1).gameObject.activeInHierarchy)
+        string colliderName = other.gameObject.name;
+        if (colliderName.StartsWith("Pillar"))
         {
-            return true;
-        } else
-        {
-            return false;
+            if (pushNewCandle(colliderName))
+            {
+                activateCandle(colliderName);
+            }
         }
     }
 
-    private bool candlesAt1Active()
+    private bool pushNewCandle(string candleName)
     {
-        if (flamesOfCandles[4].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[5].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[6].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[7].transform.GetChild(1).gameObject.activeInHierarchy)
+        if(lastTwoCandles[0] != candleName && lastTwoCandles[1] != candleName)
         {
+            lastTwoCandles[1] = lastTwoCandles[0];
+            lastTwoCandles[0] = candleName;
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
-    private bool candlesAt2Active()
+    private bool activateCandle(string candleName)
     {
-        if (flamesOfCandles[8].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[9].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[10].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[11].transform.GetChild(1).gameObject.activeInHierarchy)
+        int index = 0;
+        if (candleName == "Pillar")
         {
-            return true;
+            while (flamesOfCandles0[index].transform.GetChild(1).gameObject.activeInHierarchy && index < 4)
+            {
+                flamesOfCandles0[index].transform.GetChild(1).gameObject.SetActive(true);
+                index++;
+            }
+            if (index < 4)
+            {
+                flamesOfCandles0[index].transform.GetChild(1).gameObject.SetActive(true);
+                Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle0);
+                drawingOrder.Add(candleName);
+                lineRendererSize++;
+                return true;
+            }
         }
-        else
+        else if (candleName == "Pillar (1)")
         {
-            return false;
+            while (flamesOfCandles1[index].transform.GetChild(1).gameObject.activeInHierarchy && index < 4)
+            {
+                flamesOfCandles1[index].transform.GetChild(1).gameObject.SetActive(true);
+                index++;
+            }
+            if (index < 4)
+            {
+                flamesOfCandles1[index].transform.GetChild(1).gameObject.SetActive(true);
+                Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle1);
+                drawingOrder.Add(candleName);
+                lineRendererSize++;
+                return true;
+            }
         }
-    }
-
-    private bool candlesAt3Active()
-    {
-        if (flamesOfCandles[12].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[13].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[14].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[15].transform.GetChild(1).gameObject.activeInHierarchy)
+        else if (candleName == "Pillar (2)")
         {
-            return true;
+            while (flamesOfCandles2[index].transform.GetChild(1).gameObject.activeInHierarchy && index < 4)
+            {
+                flamesOfCandles2[index].transform.GetChild(1).gameObject.SetActive(true);
+                index++;
+            }
+            if (index < 4)
+            {
+                flamesOfCandles2[index].transform.GetChild(1).gameObject.SetActive(true);
+                Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle2);
+                drawingOrder.Add(candleName);
+                lineRendererSize++;
+                return true;
+            }
         }
-        else
+        else if (candleName == "Pillar (3)")
         {
-            return false;
+            while (flamesOfCandles3[index].transform.GetChild(1).gameObject.activeInHierarchy && index < 4)
+            {
+                flamesOfCandles3[index].transform.GetChild(1).gameObject.SetActive(true);
+                index++;
+            }
+            if (index < 4)
+            {
+                flamesOfCandles3[index].transform.GetChild(1).gameObject.SetActive(true);
+                Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle3);
+                drawingOrder.Add(candleName);
+                lineRendererSize++;
+                return true;
+            }
         }
-    }
-
-    private bool candlesAt4Active()
-    {
-        if (flamesOfCandles[16].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[17].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[18].transform.GetChild(1).gameObject.activeInHierarchy && flamesOfCandles[19].transform.GetChild(1).gameObject.activeInHierarchy)
+        else if (candleName == "Pillar (4)")
         {
-            return true;
+            while (flamesOfCandles4[index].transform.GetChild(1).gameObject.activeInHierarchy && index < 4)
+            {
+                flamesOfCandles4[index].transform.GetChild(1).gameObject.SetActive(true);
+                index++;
+            }
+            if (index < 4)
+            {
+                flamesOfCandles4[index].transform.GetChild(1).gameObject.SetActive(true);
+                Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle4);
+                drawingOrder.Add(candleName);
+                lineRendererSize++;
+                return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     private void validateBannkreis()
     {
-        if(drawingOrder.Count == 3 && drawingOrder[0].Equals(candle0) && drawingOrder[1].Equals(candle1) && drawingOrder[2].Equals(candle3))
+        if(drawingOrder.Count == 3 && drawingOrder[0].Equals("Pillar") && drawingOrder[1].Equals("Pillar (1)") && drawingOrder[2].Equals("Pillar (3)"))
         {
             Debug.Log("Correct order");
 
@@ -175,16 +193,16 @@ public class Bannstab : MonoBehaviour
         }
         Line.GetComponent<LineRenderer>().positionCount = 0;
         
-        for(int i = 0; i < flamesOfCandles.Length; i++)
+        for(int i = 0; i < 4; i++)
         {
-            flamesOfCandles[i].transform.GetChild(1).gameObject.SetActive(false);
+            flamesOfCandles0[i].transform.GetChild(1).gameObject.SetActive(false);
+            flamesOfCandles1[i].transform.GetChild(1).gameObject.SetActive(false);
+            flamesOfCandles2[i].transform.GetChild(1).gameObject.SetActive(false);
+            flamesOfCandles3[i].transform.GetChild(1).gameObject.SetActive(false);
+            flamesOfCandles4[i].transform.GetChild(1).gameObject.SetActive(false);
         }
-
-        candlesAt0Activated = false;
-        candlesAt1Activated = false;
-        candlesAt2Activated = false;
-        candlesAt3Activated = false;
-        candlesAt4Activated = false;
-        index = 0;
+        lastTwoCandles[0] = "";
+        lastTwoCandles[1] = "";
+        lineRendererSize = 0;
     }
 }

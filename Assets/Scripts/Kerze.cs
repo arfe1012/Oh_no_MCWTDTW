@@ -17,11 +17,4 @@ public class Kerze : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.name == "BannstabFlamme1" || other.gameObject.name == "BannstabFlamme2")
-        {
-            transform.GetChild(1).gameObject.SetActive(true);
-        }
-    }
 }
