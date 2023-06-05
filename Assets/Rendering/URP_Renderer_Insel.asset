@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
-  m_Name: URP_Renderer_Renderer
+  m_Name: URP_Renderer_Insel
   m_EditorClassIdentifier: 
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
@@ -155,10 +155,10 @@ MonoBehaviour:
   m_AssetVersion: 1
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 4343
+    m_Bits: 503
   m_TransparentLayerMask:
     serializedVersion: 2
-    m_Bits: 4343
+    m_Bits: 247
   m_DefaultStencilState:
     overrideStencilState: 0
     stencilReference: 0
