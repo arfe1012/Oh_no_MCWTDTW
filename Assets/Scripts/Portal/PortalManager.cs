@@ -15,29 +15,57 @@ public class PortalManager : MonoBehaviour
     public MeshRenderer InselRenderer;
     public MeshRenderer KellerRenderer;
     public GameObject Player;
+    public GameObject KellerCollider;
+    public GameObject DimensionCollider;
+    UniversalAdditionalCameraData additionalCameraData;
+    public Camera Camera;
 
 
-    public UniversalRenderPipelineAsset urpAsset;
-    public Renderer[] rendererList;
+    private bool fliegendeInselActive = false;
 
 
-    private bool inselWorldActive = false;
+    
+    
+    private void Start()
+    {
+        additionalCameraData = Camera.transform.GetComponent<UniversalAdditionalCameraData>();
+    }
+
 
     void Update()
     {
         
-        if (switchPortal)
+        if (switchPortal) //Startet den Portal Spawn, wenn switchPortal == true
         {
             StartCoroutine(SwitchingPortalCoroutine());
             switchPortal = false;
         }
+
+        
+        if (fliegendeInselActive) // Aktiviert die Sicht auf die Fliegenden Inseln permanent, wenn der Character von Kellerseite durch das Portal steigt
+        {
+            Debug.Log("FliegendeInselactive");
+            if (KellerCollider.GetComponent<PlayerColliding>().playerCollision == false && DimensionCollider.GetComponent<PlayerColliding>().playerCollision == false)
+            {
+                
+            }
+            else if (KellerCollider.GetComponent<PlayerColliding>().playerCollision == true && DimensionCollider.GetComponent<PlayerColliding>().playerCollision == false)
+            {
+                SetFiltering(0);
+            }
+            else if (KellerCollider.GetComponent<PlayerColliding>().playerCollision == false && DimensionCollider.GetComponent<PlayerColliding>().playerCollision == true)
+            {
+                SetFiltering(1);
+            }
+        }
+
 
 
     }
 
     IEnumerator SwitchingPortalCoroutine()
     {
-        for (float dissolve = 0; dissolve <= 1; dissolve += Time.deltaTime)
+        for (float dissolve = 0; dissolve <= 1; dissolve += Time.deltaTime) //Baut den Swoosh Shader auf
         {
             material.SetFloat("_DissolveAmount", dissolve);
             yield return null;
@@ -47,14 +75,18 @@ public class PortalManager : MonoBehaviour
         {
             InselRenderer.enabled = false;
             KellerRenderer.enabled = true;
+
+            fliegendeInselActive = false;
         }
         else
         {
             InselRenderer.enabled = true;
             KellerRenderer.enabled = false;
+
+            fliegendeInselActive = true;
         }
 
-        for (float dissolve = 1; dissolve >= 0; dissolve -= Time.deltaTime)
+        for (float dissolve = 1; dissolve >= 0; dissolve -= Time.deltaTime) //Baut den Swoosh Shader auf
         {
             material.SetFloat("_DissolveAmount", dissolve);
             yield return null;
@@ -62,30 +94,11 @@ public class PortalManager : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+
+
+    public void SetFiltering(int index)
     {
-        
-        if (other.gameObject == Player)
-        {
-            
-            if (InselRenderer.enabled)
-            {
-                SetFiltering(true);
-                Debug.Log("Collided With player und Fliegende Inseln!");
-            }
-        }
-    }
-
-
-
-
-    public void SetFiltering(bool enabled)
-    {
-
-
-
-
-
+        additionalCameraData.SetRenderer(index);
     }
 
 }
