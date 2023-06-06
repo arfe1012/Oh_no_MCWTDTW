@@ -11,7 +11,7 @@ public class PortalManager : MonoBehaviour
     [SerializeField] private Material material;
 
     public float dissolveAmount;
-    public bool switchPortal;
+    public bool switchPortal = false;
     public MeshRenderer InselRenderer;
     public MeshRenderer KellerRenderer;
     public GameObject Player;
@@ -20,8 +20,10 @@ public class PortalManager : MonoBehaviour
     UniversalAdditionalCameraData additionalCameraData;
     public Camera Camera;
 
+    public Material OberweltSkybox;
+    public Material InselSkybox;
 
-    private bool fliegendeInselActive = false;
+    public bool fliegendeInselActive = false;
 
 
     
@@ -107,6 +109,7 @@ public class PortalManager : MonoBehaviour
             //Tauscht die Renderer zum Keller (leer) aus
             InselRenderer.enabled = false;
             KellerRenderer.enabled = true;
+            RenderSettings.skybox = OberweltSkybox;
 
             fliegendeInselActive = false;
         }
@@ -115,6 +118,7 @@ public class PortalManager : MonoBehaviour
             //Tauscht die Renderer zur Insel aus
             InselRenderer.enabled = true;
             KellerRenderer.enabled = false;
+            RenderSettings.skybox = InselSkybox;
 
             fliegendeInselActive = true;
         }

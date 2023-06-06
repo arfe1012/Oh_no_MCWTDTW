@@ -7,6 +7,7 @@ public class Bannstab : MonoBehaviour
     public GameObject Flame1;
     public GameObject Flame2;
     public GameObject Line;
+    public GameObject Portal;
     public GameObject[] flamesOfCandles0;
     public GameObject[] flamesOfCandles1;
     public GameObject[] flamesOfCandles2;
@@ -17,8 +18,12 @@ public class Bannstab : MonoBehaviour
     private Vector3 candle2 = new Vector3((float)0.3, 0, -1);
     private Vector3 candle3 = new Vector3((float)0.2, 0, (float)1.105);
     private Vector3 candle4 = new Vector3(1, 0, (float)0.1);
+    
+
+
     private int lineRendererSize = 0;
     private List<string> drawingOrder = new List<string>();
+    private List<string> connections = new List<string>();
     private bool firstCandleLit = false; // Only if the line should be connected to the Bannstab
     private List<string> lastTwoCandles = new List<string>();
 
@@ -42,6 +47,9 @@ public class Bannstab : MonoBehaviour
     {
         Flame1.SetActive(true);
         Flame2.SetActive(true);
+
+        resetBannkreis();
+        
     }
 
     public void releaseTrigger()
@@ -65,7 +73,7 @@ public class Bannstab : MonoBehaviour
 
     private bool pushNewCandle(string candleName)
     {
-        if(lastTwoCandles[0] != candleName && lastTwoCandles[1] != candleName)
+        if(lastTwoCandles[0] != candleName && lastTwoCandles[1] != candleName && !connections.Contains(candleName + "+" + lastTwoCandles[0]) && !connections.Contains(lastTwoCandles[0] + "+" + candleName))
         {
             lastTwoCandles[1] = lastTwoCandles[0];
             lastTwoCandles[0] = candleName;
@@ -91,6 +99,9 @@ public class Bannstab : MonoBehaviour
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle0);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+
+                connections.Add(candleName + "+" + lastTwoCandles[1]);
+                connections.Add(lastTwoCandles[1] + "+" + candleName);
                 return true;
             }
         }
@@ -108,6 +119,9 @@ public class Bannstab : MonoBehaviour
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle1);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+
+                connections.Add(candleName + "+" + lastTwoCandles[1]);
+                connections.Add(lastTwoCandles[1] + "+" + candleName);
                 return true;
             }
         }
@@ -125,6 +139,9 @@ public class Bannstab : MonoBehaviour
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle2);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+
+                connections.Add(candleName + "+" + lastTwoCandles[1]);
+                connections.Add(lastTwoCandles[1] + "+" + candleName);
                 return true;
             }
         }
@@ -142,6 +159,9 @@ public class Bannstab : MonoBehaviour
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle3);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+
+                connections.Add(candleName + "+" + lastTwoCandles[0]);
+                connections.Add(lastTwoCandles[1] + "+" + candleName);
                 return true;
             }
         }
@@ -159,6 +179,9 @@ public class Bannstab : MonoBehaviour
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle4);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+
+                connections.Add(candleName + "+" + lastTwoCandles[1]);
+                connections.Add(lastTwoCandles[1] + "+" + candleName);
                 return true;
             }
         }
@@ -167,17 +190,21 @@ public class Bannstab : MonoBehaviour
 
     private void validateBannkreis()
     {
-        if(drawingOrder.Count == 3 && drawingOrder[0].Equals("Pillar") && drawingOrder[1].Equals("Pillar (1)") && drawingOrder[2].Equals("Pillar (3)"))
+        
+
+        if (checkForPattern() == true)
         {
+            //Aktiviert die Dimension
             Debug.Log("Correct order");
 
-            /*
-             * 
-             * Set States for Portals in here
-             * 
-             */ 
-        } else
+            if (!Portal.GetComponent<PortalManager>().fliegendeInselActive)
+            {
+                Portal.GetComponent<PortalManager>().switchPortal = true;
+            }
+        }
+        else
         {
+            //setzt die Linie und das Portal zurück mit resetBannkreis()
             Debug.Log("Wrong order");
             resetBannkreis();
         }
@@ -185,12 +212,17 @@ public class Bannstab : MonoBehaviour
 
     private void resetBannkreis()
     {
+        connections.Clear();
         drawingOrder.Clear();
         Vector3[] resetArray = new Vector3[drawingOrder.Count + 1];
-        for(int i = 0; i <= drawingOrder.Count; i++)
+        if(drawingOrder.Count != 0)
         {
-            Line.GetComponent<LineRenderer>().SetPosition(i, candle0);
+            for (int i = 0; i <= drawingOrder.Count; i++)
+            {
+                Line.GetComponent<LineRenderer>().SetPosition(i, candle0);
+            }
         }
+        
         Line.GetComponent<LineRenderer>().positionCount = 0;
         
         for(int i = 0; i < 4; i++)
@@ -204,5 +236,28 @@ public class Bannstab : MonoBehaviour
         lastTwoCandles[0] = "";
         lastTwoCandles[1] = "";
         lineRendererSize = 0;
+
+        if (Portal.GetComponent<PortalManager>().fliegendeInselActive)
+        {
+            Portal.GetComponent<PortalManager>().switchPortal = true;
+        }
+    }
+
+    private bool checkForPattern()
+    {
+        if (
+            (drawingOrder.Count == 9 && connections.Contains("Pillar+Pillar (1)") && connections.Contains("Pillar+Pillar (2)") && connections.Contains("Pillar+Pillar (3)") && connections.Contains("Pillar (1)+Pillar (2)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (4)") && connections.Contains("Pillar (3)+Pillar (4)"))
+            || (drawingOrder.Count == 6 && connections.Contains("Pillar+Pillar (2)") && connections.Contains("Pillar (2)+Pillar (3)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar+Pillar (4)"))
+            || (drawingOrder.Count == 7 && connections.Contains("Pillar+Pillar (2)") && connections.Contains("Pillar+Pillar (3)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar+Pillar (1)"))
+            || (drawingOrder.Count == 7 && connections.Contains("Pillar (2)+Pillar (4)") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar+Pillar (1)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (3)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)"))
+            || (drawingOrder.Count == 2 && connections.Contains("Pillar+Pillar (1)") )
+            )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
