@@ -24,19 +24,19 @@ public class Raycast : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        originVector = origin.transform.localPosition;
-        points[0] = originVector;
+        originVector = origin.transform.position;
+        points[0] = origin.transform.localPosition;
 
         RaycastHit hit;
         if (hitByLight == true || isSource == true)
         {
-            direction = this.transform.forward;
+            direction = origin.transform.forward;
             if (Physics.Raycast(originVector, direction, out hit, Mathf.Infinity, layerMask))
             {
                 Debug.DrawRay(originVector, direction * hit.distance, Color.yellow);
                 Debug.Log("Did Hit");
                 points[1] = hit.transform.position - originVector;
-                hit.transform.GetComponent<Raycast>().hitByLight = true;
+                hit.transform.GetComponentInParent<Raycast>().hitByLight = true;
             }
             else
             {
@@ -47,8 +47,7 @@ public class Raycast : MonoBehaviour
             }
         } else
         {
-            direction = new Vector3(0, 0, 0);
-            points[1] = direction;
+            points[1] = points[0];
         }
         renderLine();
     }
