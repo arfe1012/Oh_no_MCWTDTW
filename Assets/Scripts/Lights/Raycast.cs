@@ -36,7 +36,14 @@ public class Raycast : MonoBehaviour
                 Debug.DrawRay(originVector, direction * hit.distance, Color.yellow);
                 Debug.Log("Did Hit");
                 points[1] = hit.transform.position - originVector;
-                hit.transform.GetComponentInParent<Raycast>().hitByLight = true;
+                
+                if (hit.transform.GetComponentInParent<Raycast>())
+                {
+                    hit.transform.GetComponentInParent<Raycast>().hitByLight = true;
+                } else if (hit.transform.GetComponentInParent<ExplosionScript>())
+                {
+                    hit.transform.GetComponentInParent<ExplosionScript>().isHit = true;
+                }
             }
             else
             {
