@@ -6,6 +6,8 @@ public class ExplosionScript : MonoBehaviour
 {
     public bool isHit;
     Animator ani;
+    float timer = 0.0f;
+    const float TIMETOEXPLODE = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +19,14 @@ public class ExplosionScript : MonoBehaviour
     {
         if (isHit)
         {
-            ani.Play("Explode");
-            
+            timer += Time.deltaTime;
+            if (timer >= TIMETOEXPLODE)
+            {
+                ani.Play("Explode");
+            } 
+        } else
+        {
+            timer = 0.0f;
         }
     }
     void EndOfAnimation()

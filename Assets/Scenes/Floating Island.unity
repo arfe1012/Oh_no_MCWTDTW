@@ -850,7 +850,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1fe8a3edee9830a45959a52d2bf3abe6, type: 2}
+  - {fileID: 2100000, guid: e7d84a67a3d27994f9ddf8555b4cd127, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -876,7 +876,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.20314525
+    widthMultiplier: 0.41555333
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1451,7 +1451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf8a88a7f8eecd048a3bca54f61d4653, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.19
+      value: -1.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf8a88a7f8eecd048a3bca54f61d4653, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1459,7 +1459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf8a88a7f8eecd048a3bca54f61d4653, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.5
+      value: 4.74
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf8a88a7f8eecd048a3bca54f61d4653, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3348,8 +3348,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHit: 0
---- !u!65 &1214372007
-BoxCollider:
+--- !u!135 &1214372009
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3359,8 +3359,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6817417, y: 1.6945496, z: 1.7863569}
-  m_Center: {x: -0.021388054, y: -0.0473938, z: -0.013515949}
+  m_Radius: 0.99
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1359009168 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 92baabba38d38ed4f9e0eb38fe6056b3, type: 3}
@@ -4449,7 +4449,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1fe8a3edee9830a45959a52d2bf3abe6, type: 2}
+  - {fileID: 2100000, guid: e7d84a67a3d27994f9ddf8555b4cd127, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4475,7 +4475,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.20314525
+    widthMultiplier: 0.39987728
     widthCurve:
       serializedVersion: 2
       m_Curve:
