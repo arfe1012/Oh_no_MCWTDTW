@@ -26,14 +26,19 @@ public class PortalManager : MonoBehaviour
 
     public bool fliegendeInselActive = false;
 
-    
 
+    private Scene[] scenes;
+    private string[] sceneList = new string[2];
 
-    
     
     private void Start()
     {
         additionalCameraData = Camera.transform.GetComponent<UniversalAdditionalCameraData>();
+
+
+        
+        sceneList[0] = "Auﬂenwelt";
+        sceneList[1] = "Floating Island";
 
 
         if (InselRenderer.enabled)
@@ -149,15 +154,18 @@ public class PortalManager : MonoBehaviour
 
     public void LoadScene(int index)
     {
-        if (index == 0)
+
+
+        scenes = SceneManager.GetAllScenes();
+
+        foreach (Scene sc in scenes)
         {
-            //SceneManager.UnloadSceneAsync("Floating Island");
-            SceneManager.LoadScene("Auﬂenwelt",LoadSceneMode.Additive);
-        }else if(index == 1)
-        {
-            //SceneManager.UnloadSceneAsync("Auﬂenwelt");
-            SceneManager.LoadScene("Floating Island", LoadSceneMode.Additive);
+            if (sc.name != "MainScene")
+                SceneManager.UnloadSceneAsync(sc.name);
         }
+            
+        SceneManager.LoadScene(sceneList[index], LoadSceneMode.Additive);
+
     }
 
 
