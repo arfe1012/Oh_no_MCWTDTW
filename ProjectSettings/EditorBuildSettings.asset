@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
-    path: Assets/Scenes/neue Map.unity
+    path: "Assets/Scenes/Au\xDFenwelt.unity"
     guid: e2bf018b80126e54d9722999732cb92d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8be14d3c940261d45a9b6040cdd816b2, type: 2}

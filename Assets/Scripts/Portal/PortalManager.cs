@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 using UnityEngine.Rendering.Universal;
@@ -24,6 +25,8 @@ public class PortalManager : MonoBehaviour
     public Material InselSkybox;
 
     public bool fliegendeInselActive = false;
+
+    
 
 
     
@@ -136,8 +139,28 @@ public class PortalManager : MonoBehaviour
     public void SetFiltering(int index)
     {
         //Ändert den Renderer der Camera. Es gibt einen Renderer pro Dimension und einen für den Keller
+        //Index 1 für die Inseln, Index 0 für den Keller
         additionalCameraData.SetRenderer(index);
+        LoadScene(index);
     }
+
+
+
+
+    public void LoadScene(int index)
+    {
+        if (index == 0)
+        {
+            //SceneManager.UnloadSceneAsync("Floating Island");
+            SceneManager.LoadScene("Außenwelt",LoadSceneMode.Additive);
+        }else if(index == 1)
+        {
+            //SceneManager.UnloadSceneAsync("Außenwelt");
+            SceneManager.LoadScene("Floating Island", LoadSceneMode.Additive);
+        }
+    }
+
+
 
 }
 
