@@ -40,6 +40,18 @@ public class PortalManager : MonoBehaviour
         sceneList[0] = "Außenwelt";
         sceneList[1] = "Floating Island";
 
+        bool iShouldLoadAussenwelt = true;
+        scenes = SceneManager.GetAllScenes();
+        foreach (Scene sc in scenes) 
+        {            
+            if (sc.name == "Außenwelt")
+            iShouldLoadAussenwelt = true;
+        }
+
+        if (iShouldLoadAussenwelt)
+        {
+            SceneManager.LoadScene("Außenwelt", LoadSceneMode.Additive);
+        }
 
         if (InselRenderer.enabled)
         {
@@ -117,6 +129,7 @@ public class PortalManager : MonoBehaviour
             //Tauscht die Renderer zum Keller (leer) aus
             InselRenderer.enabled = false;
             KellerRenderer.enabled = true;
+            LoadScene(0);
             RenderSettings.skybox = OberweltSkybox;
 
             fliegendeInselActive = false;
@@ -126,6 +139,7 @@ public class PortalManager : MonoBehaviour
             //Tauscht die Renderer zur Insel aus
             InselRenderer.enabled = true;
             KellerRenderer.enabled = false;
+            LoadScene(1);
             RenderSettings.skybox = InselSkybox;
 
             fliegendeInselActive = true;
@@ -146,7 +160,7 @@ public class PortalManager : MonoBehaviour
         //Ändert den Renderer der Camera. Es gibt einen Renderer pro Dimension und einen für den Keller
         //Index 1 für die Inseln, Index 0 für den Keller
         additionalCameraData.SetRenderer(index);
-        LoadScene(index);
+        
     }
 
 
