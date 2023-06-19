@@ -18,9 +18,9 @@ public class Bannstab : MonoBehaviour
     private Vector3 candle2 = new Vector3((float)0.3, 0, -1);
     private Vector3 candle3 = new Vector3((float)0.2, 0, (float)1.105);
     private Vector3 candle4 = new Vector3(1, 0, (float)0.1);
-    
 
 
+    private Vector3 bannkreisCenter;
     private int lineRendererSize = 0;
     private List<string> drawingOrder = new List<string>();
     private List<string> connections = new List<string>();
@@ -34,19 +34,28 @@ public class Bannstab : MonoBehaviour
         lastTwoCandles.Add("");
         Flame1.SetActive(false);
         Flame2.SetActive(false);
+        Flame1.GetComponent<Collider>().enabled = false;
+        Flame2.GetComponent<Collider>().enabled = false;
         Line.GetComponent<LineRenderer>().positionCount = 0;
+        bannkreisCenter.Set(4.659f, 0.8f, 3.527f);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (firstCandleLit)
+        {
+            Debug.Log("Update called");
+            Line.GetComponent<LineRenderer>().SetPosition(Line.GetComponent<LineRenderer>().positionCount - 1, GameObject.Find("BannstabFlamme1").transform.position - bannkreisCenter);
+        }
     }
 
     public void pullTrigger()
     {
         Flame1.SetActive(true);
         Flame2.SetActive(true);
+        Flame1.GetComponent<Collider>().enabled = true;
+        Flame2.GetComponent<Collider>().enabled = true;
 
         resetBannkreis();
         
@@ -56,6 +65,8 @@ public class Bannstab : MonoBehaviour
     {
         Flame1.SetActive(false);
         Flame2.SetActive(false);
+        Flame1.GetComponent<Collider>().enabled = false;
+        Flame2.GetComponent<Collider>().enabled = false;
         validateBannkreis();
     }
 
@@ -100,6 +111,7 @@ public class Bannstab : MonoBehaviour
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
 
+
                 connections.Add(candleName + "+" + lastTwoCandles[1]);
                 connections.Add(lastTwoCandles[1] + "+" + candleName);
                 return true;
@@ -119,6 +131,12 @@ public class Bannstab : MonoBehaviour
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle1);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+                if (lineRendererSize == 1)
+                {
+                    Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                    firstCandleLit = true;
+                    Debug.Log("" + firstCandleLit + Line.GetComponent<LineRenderer>().positionCount + lineRendererSize);
+                }
 
                 connections.Add(candleName + "+" + lastTwoCandles[1]);
                 connections.Add(lastTwoCandles[1] + "+" + candleName);
@@ -139,6 +157,12 @@ public class Bannstab : MonoBehaviour
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle2);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+                if (lineRendererSize == 1)
+                {
+                    Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                    firstCandleLit = true;
+                    Debug.Log("" + firstCandleLit + Line.GetComponent<LineRenderer>().positionCount + lineRendererSize);
+                }
 
                 connections.Add(candleName + "+" + lastTwoCandles[1]);
                 connections.Add(lastTwoCandles[1] + "+" + candleName);
@@ -159,6 +183,12 @@ public class Bannstab : MonoBehaviour
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle3);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+                if (lineRendererSize == 1)
+                {
+                    Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                    firstCandleLit = true;
+                    Debug.Log("" + firstCandleLit + Line.GetComponent<LineRenderer>().positionCount + lineRendererSize);
+                }
 
                 connections.Add(candleName + "+" + lastTwoCandles[0]);
                 connections.Add(lastTwoCandles[1] + "+" + candleName);
@@ -179,6 +209,12 @@ public class Bannstab : MonoBehaviour
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle4);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+                if (lineRendererSize == 1)
+                {
+                    Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                    firstCandleLit = true;
+                    Debug.Log("" + firstCandleLit + Line.GetComponent<LineRenderer>().positionCount + lineRendererSize);
+                }
 
                 connections.Add(candleName + "+" + lastTwoCandles[1]);
                 connections.Add(lastTwoCandles[1] + "+" + candleName);
@@ -236,6 +272,7 @@ public class Bannstab : MonoBehaviour
         lastTwoCandles[0] = "";
         lastTwoCandles[1] = "";
         lineRendererSize = 0;
+        firstCandleLit = false;
 
         if (Portal.GetComponent<PortalManager>().fliegendeInselActive)
         {
