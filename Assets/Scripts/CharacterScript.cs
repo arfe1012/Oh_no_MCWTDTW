@@ -5,11 +5,10 @@ using UnityEngine;
 public class CharacterScript : MonoBehaviour
 {
 
-    //public Camera camera;
-    //private float defaultHeight = 1.7f;
-    //private CharacterController CC;
+    public Camera camera;
+    private float defaultHeight = 1.7f;
+    private CharacterController CC;
 
-    private Button
 
     // Start is called before the first frame update
     void Start()
