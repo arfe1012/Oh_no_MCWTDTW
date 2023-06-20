@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2141941954974486507
+--- !u!114 &-3982111275119001700
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,21 +20,23 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveMat
-  m_Shader: {fileID: -6465566751694194690, guid: 35318022c6bc0364a8d532ef68ecec1c, type: 3}
-  m_ValidKeywords:
-  - _ALPHATEST_ON
+  m_Name: RuneMat
+  m_Shader: {fileID: -6465566751694194690, guid: 51541a46eca94a446a16f253e1760be2, type: 3}
+  m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: TransparentCutout
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: 05bf218d2a4679f4283c4cbd03f19e30, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -49,24 +51,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 1
-    - _Blend: 0
-    - _CastShadows: 1
-    - _Cull: 2
-    - _DissolveAmount: 0.0032708454
-    - _DstBlend: 0
-    - _EdgeWidth: 0.02
-    - _Edgewidth2: 0.27
-    - _Offset1: 10.5
+    - _DissolveAmount: 2.74
+    - _DissolveScale: 3
+    - _DistortionAmount: 0.04
+    - _DistortionScale: 5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReceiveShadows: 1
-    - _SrcBlend: 1
-    - _Surface: 0
-    - _WorkflowMode: 1
-    - _ZTest: 4
-    - _ZWrite: 1
-    - _ZWriteControl: 0
+    - _Transparencx: 0.843
     m_Colors:
-    - _Edge_Color: {r: 0.476339, g: 0.1011097, b: 0.1790433, a: 0}
+    - _Color: {r: 19.46857, g: 0.5096484, b: 2.007114, a: 0}
+    - _DissolveSpeed: {r: -0.1, g: 0.16, b: 0, a: 0}
+    - _DistortionSpeed: {r: 0.42, g: -0.2, b: 0, a: 0}
   m_BuildTextureStacks: []

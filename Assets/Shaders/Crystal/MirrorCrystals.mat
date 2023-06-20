@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2141941954974486507
+--- !u!114 &-16267329788864247
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,17 +20,15 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveMat
-  m_Shader: {fileID: -6465566751694194690, guid: 35318022c6bc0364a8d532ef68ecec1c, type: 3}
-  m_ValidKeywords:
-  - _ALPHATEST_ON
+  m_Name: MirrorCrystals
+  m_Shader: {fileID: -6465566751694194690, guid: f0a49e0d46090684fa8989753a16b60c, type: 3}
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: TransparentCutout
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -49,24 +47,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 1
-    - _Blend: 0
-    - _CastShadows: 1
-    - _Cull: 2
-    - _DissolveAmount: 0.0032708454
-    - _DstBlend: 0
-    - _EdgeWidth: 0.02
-    - _Edgewidth2: 0.27
-    - _Offset1: 10.5
+    - _BottomLine: 0.835
+    - _Metallic: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReceiveShadows: 1
-    - _SrcBlend: 1
-    - _Surface: 0
-    - _WorkflowMode: 1
-    - _ZTest: 4
-    - _ZWrite: 1
-    - _ZWriteControl: 0
+    - _Smoothness: 0.72
+    - _TopLine: 0.132
     m_Colors:
-    - _Edge_Color: {r: 0.476339, g: 0.1011097, b: 0.1790433, a: 0}
+    - _BaseColor: {r: 0.7169812, g: 0.19953722, b: 0.19953722, a: 1}
+    - _BottomColor: {r: 0.2735849, g: 0.021938415, b: 0.09278407, a: 0}
+    - _TopColor: {r: 0.7169812, g: 0, b: 0, a: 0}
+    - _TransparenzFarbe: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0.007843138}
   m_BuildTextureStacks: []
