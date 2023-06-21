@@ -13,6 +13,7 @@ public class Raycast : MonoBehaviour
     int layerMask;
     public bool hitByLight;
     public bool isSource;
+    RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
@@ -27,15 +28,15 @@ public class Raycast : MonoBehaviour
         originVector = origin.transform.position;
         points[0] = origin.transform.localPosition;
 
-        RaycastHit hit;
-        if (hitByLight == true || isSource == true)
+        
+        if (hitByLight || isSource)
         {
             direction = origin.transform.forward;
             if (Physics.Raycast(originVector, direction, out hit, Mathf.Infinity, layerMask))
             {
                 Debug.DrawRay(originVector, direction * hit.distance, Color.yellow);
                 Debug.Log("Did Hit");
-                points[1] = hit.transform.position - originVector;
+                points[1] = points[0] +  direction * hit.distance;
                 
                 if (hit.transform.GetComponentInParent<Raycast>())
                 {
@@ -50,13 +51,13 @@ public class Raycast : MonoBehaviour
                 Debug.DrawRay(originVector, direction * 1000, Color.white);
                 Debug.Log("Did not Hit");
                 points[1] = direction * 1000;
-                hitByLight = false;
             }
         } else
         {
             points[1] = points[0];
         }
         renderLine();
+        hitByLight = false;
     }
 
     void renderLine()
