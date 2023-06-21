@@ -36,7 +36,7 @@ public class Raycast : MonoBehaviour
             {
                 Debug.DrawRay(originVector, direction * hit.distance, Color.yellow);
                 Debug.Log("Did Hit");
-                points[1] = points[0] +  direction * hit.distance;
+                points[1] = points[0] + direction * hit.distance;
                 
                 if (hit.transform.GetComponentInParent<Raycast>())
                 {
@@ -50,7 +50,7 @@ public class Raycast : MonoBehaviour
             {
                 Debug.DrawRay(originVector, direction * 1000, Color.white);
                 Debug.Log("Did not Hit");
-                points[1] = direction * 1000;
+                points[1] = points[0] + direction * 1000;
             }
         } else
         {
