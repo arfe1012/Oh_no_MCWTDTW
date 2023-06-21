@@ -4,27 +4,43 @@ using UnityEngine;
 
 public class Bannstab : MonoBehaviour
 {
+    // Flames of Bannstab
     public GameObject Flame1;
     public GameObject Flame2;
+
+    // Connection Line
     public GameObject Line;
+
     public GameObject Portal;
+
+    // For each pillar with candles one array that holds those candles
     public GameObject[] flamesOfCandles0;
     public GameObject[] flamesOfCandles1;
     public GameObject[] flamesOfCandles2;
     public GameObject[] flamesOfCandles3;
     public GameObject[] flamesOfCandles4;
+
+    //candle positions are fixed
     private Vector3 candle0 = new Vector3(-1, 0, (float)-0.65);
     private Vector3 candle1 = new Vector3((float)-1.04, 0, (float)0.6);
     private Vector3 candle2 = new Vector3((float)0.3, 0, -1);
     private Vector3 candle3 = new Vector3((float)0.2, 0, (float)1.105);
     private Vector3 candle4 = new Vector3(1, 0, (float)0.1);
 
-
+    // For having a reference point (only used for line to tip of Bannstab)
     private Vector3 bannkreisCenter;
+
+    // could get rid of this variable but magically makes everything work...
     private int lineRendererSize = 0;
+
+    // Order drawn by the Player is stored in here 
     private List<string> drawingOrder = new List<string>();
+
+    // similar to drawingOrder
     private List<string> connections = new List<string>();
-    private bool firstCandleLit = false; // Only if the line should be connected to the Bannstab
+
+    // So the tip of Bannstab is only connected, if a candle is already lit
+    private bool firstCandleLit = false;
     private List<string> lastTwoCandles = new List<string>();
 
     // Start is called before the first frame update
@@ -37,7 +53,7 @@ public class Bannstab : MonoBehaviour
         Flame1.GetComponent<Collider>().enabled = false;
         Flame2.GetComponent<Collider>().enabled = false;
         Line.GetComponent<LineRenderer>().positionCount = 0;
-        bannkreisCenter.Set(4.659f, 0.8f, 3.527f);
+        bannkreisCenter.Set(4.8f, 0.8f, 3.75f);
     }
 
     // Update is called once per frame
@@ -45,8 +61,13 @@ public class Bannstab : MonoBehaviour
     {
         if (firstCandleLit)
         {
-            Debug.Log("Update called");
-            Line.GetComponent<LineRenderer>().SetPosition(Line.GetComponent<LineRenderer>().positionCount - 1, GameObject.Find("BannstabFlamme1").transform.position - bannkreisCenter);
+            // make newest point of the line connected to tip of Bannstab
+            int currentLineCount = Line.GetComponent<LineRenderer>().positionCount;
+            Vector3 newestCandle = Line.GetComponent<LineRenderer>().GetPosition(currentLineCount - 1);
+            if (newestCandle != candle0 && newestCandle != candle1 && newestCandle != candle2 && newestCandle != candle3 && newestCandle != candle4)
+            {
+                Line.GetComponent<LineRenderer>().SetPosition(currentLineCount - 1, GameObject.Find("BannstabFlamme1").transform.position - bannkreisCenter);
+            }
         }
     }
 
@@ -106,11 +127,17 @@ public class Bannstab : MonoBehaviour
             if (index < 4)
             {
                 flamesOfCandles0[index].transform.GetChild(1).gameObject.SetActive(true);
-                Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                Line.GetComponent<LineRenderer>().positionCount++;
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle0);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
 
+                if (lineRendererSize == 1)
+                {
+                    Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                    firstCandleLit = true;
+                    Debug.Log("" + firstCandleLit + Line.GetComponent<LineRenderer>().positionCount + lineRendererSize);
+                }
 
                 connections.Add(candleName + "+" + lastTwoCandles[1]);
                 connections.Add(lastTwoCandles[1] + "+" + candleName);
@@ -127,10 +154,11 @@ public class Bannstab : MonoBehaviour
             if (index < 4)
             {
                 flamesOfCandles1[index].transform.GetChild(1).gameObject.SetActive(true);
-                Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                Line.GetComponent<LineRenderer>().positionCount++;
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle1);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+
                 if (lineRendererSize == 1)
                 {
                     Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
@@ -153,10 +181,11 @@ public class Bannstab : MonoBehaviour
             if (index < 4)
             {
                 flamesOfCandles2[index].transform.GetChild(1).gameObject.SetActive(true);
-                Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                Line.GetComponent<LineRenderer>().positionCount++;
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle2);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+
                 if (lineRendererSize == 1)
                 {
                     Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
@@ -179,10 +208,11 @@ public class Bannstab : MonoBehaviour
             if (index < 4)
             {
                 flamesOfCandles3[index].transform.GetChild(1).gameObject.SetActive(true);
-                Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                Line.GetComponent<LineRenderer>().positionCount++;
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle3);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+
                 if (lineRendererSize == 1)
                 {
                     Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
@@ -205,10 +235,11 @@ public class Bannstab : MonoBehaviour
             if (index < 4)
             {
                 flamesOfCandles4[index].transform.GetChild(1).gameObject.SetActive(true);
-                Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
+                Line.GetComponent<LineRenderer>().positionCount++;
                 Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, candle4);
                 drawingOrder.Add(candleName);
                 lineRendererSize++;
+
                 if (lineRendererSize == 1)
                 {
                     Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
@@ -232,11 +263,17 @@ public class Bannstab : MonoBehaviour
         {
             //Aktiviert die Dimension
             Debug.Log("Correct order");
+            firstCandleLit = false;
 
-            if (!Portal.GetComponent<PortalManager>().fliegendeInselActive)
+            // Remove Line to the Bannstab
+            Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, Line.GetComponent<LineRenderer>().GetPosition(lineRendererSize - 1));
+
+            // open Portal TODO Logik muss noch überarbeitet werden wann das Portal auf und zu geht
+            if (!Portal.GetComponent<PortalManager>().switchPortal)
             {
                 Portal.GetComponent<PortalManager>().switchPortal = true;
             }
+
         }
         else
         {
@@ -250,6 +287,7 @@ public class Bannstab : MonoBehaviour
     {
         connections.Clear();
         drawingOrder.Clear();
+        Portal.GetComponent<PortalManager>().switchPortal = false;
         Vector3[] resetArray = new Vector3[drawingOrder.Count + 1];
         if(drawingOrder.Count != 0)
         {
@@ -296,5 +334,10 @@ public class Bannstab : MonoBehaviour
         {
             return false;
         }
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(3);
     }
 }

@@ -13,16 +13,16 @@ public class CharacterScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CC = GameObject.Find("XR Origin").GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         float headHeight = camera.transform.localPosition.y;
-        float scale = defaultHeight / headHeight;
-        Debug.Log(scale);
-        CC = GameObject.Find("XR Origin").GetComponent<CharacterController>();
-        //CC.height = defaultHeight * scale;
-        Debug.Log("CC height" + CC.height);
+        if(headHeight < 2 && headHeight > 0.5)
+        {
+            CC.height = headHeight;
+        }
     }
 }
