@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveMat
+  m_Name: ObDissolveMat
   m_Shader: {fileID: -6465566751694194690, guid: 35318022c6bc0364a8d532ef68ecec1c, type: 3}
   m_ValidKeywords:
   - _ALPHATEST_ON
@@ -53,7 +53,7 @@ Material:
     - _Blend: 0
     - _CastShadows: 1
     - _Cull: 2
-    - _DissolveAmount: 0.0009339219
+    - _DissolveAmount: 0.0010820953
     - _DstBlend: 0
     - _EdgeWidth: 0.02
     - _Edgewidth2: 0.27
