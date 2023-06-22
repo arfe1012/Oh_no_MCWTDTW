@@ -35,7 +35,7 @@ public class Raycast : MonoBehaviour
             if (Physics.Raycast(originVector, direction, out hit, Mathf.Infinity, layerMask))
             {
                 Debug.DrawRay(originVector, direction * hit.distance, Color.yellow);
-                Debug.Log("Did Hit");
+                //Debug.Log("Did Hit");
                 points[1] = points[0] + direction * hit.distance;
                 
                 if (hit.transform.GetComponentInParent<Raycast>())
@@ -49,7 +49,7 @@ public class Raycast : MonoBehaviour
             else
             {
                 Debug.DrawRay(originVector, direction * 1000, Color.white);
-                Debug.Log("Did not Hit");
+                //Debug.Log("Did not Hit");
                 points[1] = points[0] + direction * 1000;
             }
         } else
