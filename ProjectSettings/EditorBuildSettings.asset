@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/Au\xDFenwelt.unity"
     guid: e2bf018b80126e54d9722999732cb92d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Floating Island.unity
     guid: 5abd1e5346f4a1b4498e55d006e869fb
   m_configObjects:
