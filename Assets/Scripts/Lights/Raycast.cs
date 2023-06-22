@@ -22,7 +22,7 @@ public class Raycast : MonoBehaviour
     void FixedUpdate()
     {
         originVector = origin.transform.position;
-        points[0] = origin.transform.localPosition;
+        points[0] = new Vector3(0,0,0);
 
         
         if (hitByLight || isSource)
@@ -34,9 +34,9 @@ public class Raycast : MonoBehaviour
                 //Debug.Log("Did Hit");
                 points[1] = points[0] + direction * hit.distance;
                 
-                if (hit.transform.GetComponentInParent<Raycast>())
+                if (hit.transform.GetComponent<Raycast>())
                 {
-                    hit.transform.GetComponentInParent<Raycast>().hitByLight = true;
+                    hit.transform.GetComponent<Raycast>().hitByLight = true;
                 } else if (hit.transform.GetComponentInParent<ExplosionScript>())
                 {
                     hit.transform.GetComponentInParent<ExplosionScript>().isHit = true;
@@ -58,6 +58,7 @@ public class Raycast : MonoBehaviour
 
     void renderLine()
     {
+        line.transform.eulerAngles = new Vector3(0, 0, 0);
         line.positionCount = 2;
         line.SetPositions(points);
     }
