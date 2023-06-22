@@ -12,6 +12,7 @@ public class Bannstab : MonoBehaviour
     public GameObject Line;
 
     public GameObject Portal;
+    public GameObject PocketPortal;
 
     // For each pillar with candles one array that holds those candles
     public GameObject[] flamesOfCandles0;
@@ -259,26 +260,56 @@ public class Bannstab : MonoBehaviour
     {
         
 
-        if (checkForPattern() == true)
+        if (checkForPattern() == 0) // Checkt auf PortalMuster
         {
             //Aktiviert die Dimension
             Debug.Log("Correct order");
             firstCandleLit = false;
-
             // Remove Line to the Bannstab
             Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, Line.GetComponent<LineRenderer>().GetPosition(lineRendererSize - 1));
 
             // open Portal TODO Logik muss noch überarbeitet werden wann das Portal auf und zu geht
             if (!Portal.GetComponent<PortalManager>().switchPortal)
             {
-                Portal.GetComponent<PortalManager>().switchPortal = true;
+                //Portal.GetComponent<PortalManager>().switchPortal = true;
             }
 
+        }
+        else if (checkForPattern() == 1) //Checkt auf Baustein1 Muster
+        {
+            
+            Debug.Log("Spawnt Object 1"); 
+            
+            firstCandleLit = false;
+            // Remove Line to the Bannstab
+            Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, Line.GetComponent<LineRenderer>().GetPosition(lineRendererSize - 1));
+            PocketPortal.GetComponent<PortalObjectSpawner>().SpawnPrefab1();
+        }
+        else if (checkForPattern() == 2) //Checkt auf Baustein2 Muster
+        {
+            
+            Debug.Log("Spawnt Object 2");
+
+            firstCandleLit = false;
+            // Remove Line to the Bannstab
+            Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, Line.GetComponent<LineRenderer>().GetPosition(lineRendererSize - 1));
+            PocketPortal.GetComponent<PortalObjectSpawner>().SpawnPrefab2();
+        }
+        else if (checkForPattern() == 3) //Checkt auf Baustein3 Muster
+        {
+
+            Debug.Log("Spawnt Object 3");
+
+            firstCandleLit = false;
+            // Remove Line to the Bannstab
+            Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, Line.GetComponent<LineRenderer>().GetPosition(lineRendererSize - 1));
+            PocketPortal.GetComponent<PortalObjectSpawner>().SpawnPrefab3();
         }
         else
         {
             //setzt die Linie und das Portal zurück mit resetBannkreis()
-            Debug.Log("Wrong order");
+            Debug.Log("Wrong order: " );
+            firstCandleLit = false;
             resetBannkreis();
         }
     }
@@ -318,9 +349,37 @@ public class Bannstab : MonoBehaviour
         }
     }
 
-    private bool checkForPattern()
+    private int checkForPattern()
     {
-        if (
+
+        Debug.Log("Drawing Order: " + drawingOrder.Count);
+
+        
+
+
+        if (drawingOrder.Count == 2 && connections.Contains("Pillar+Pillar (1)"))
+        {
+            return 0;
+        }
+        else if (drawingOrder.Count == 2 && connections.Contains("Pillar (1)+Pillar (3)"))
+        {
+            return 1;
+        }
+        else if (drawingOrder.Count == 2 && connections.Contains("Pillar (3)+Pillar (4)"))
+        {
+            return 2;
+        }
+        else if (drawingOrder.Count == 2 && connections.Contains("Pillar (4)+Pillar (2)"))
+        {
+            return 3;
+        }
+        else
+        {
+            return -1;
+        }
+
+
+        /*if (
             (drawingOrder.Count == 10 && connections.Contains("Pillar+Pillar (1)") && connections.Contains("Pillar+Pillar (2)") && connections.Contains("Pillar+Pillar (3)") && connections.Contains("Pillar (1)+Pillar (2)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (4)") && connections.Contains("Pillar (3)+Pillar (4)"))
             || (drawingOrder.Count == 6 && connections.Contains("Pillar+Pillar (2)") && connections.Contains("Pillar (2)+Pillar (3)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar+Pillar (4)"))
             || (drawingOrder.Count == 7 && connections.Contains("Pillar+Pillar (2)") && connections.Contains("Pillar+Pillar (3)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar+Pillar (1)"))
@@ -328,12 +387,16 @@ public class Bannstab : MonoBehaviour
             || (drawingOrder.Count == 2 && connections.Contains("Pillar+Pillar (1)") )
             )
         {
-            return true;
+            return 0;
         }
         else
         {
-            return false;
-        }
+            return 1;
+        }*/
+
+
+
+
     }
 
     IEnumerator wait()
