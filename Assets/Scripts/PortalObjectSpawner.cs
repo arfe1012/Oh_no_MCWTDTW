@@ -51,7 +51,7 @@ public class PortalObjectSpawner : MonoBehaviour
 
     {
         material.SetFloat("_DissolveAmount", 1);
-        for (float dissolve = 0; dissolve <= 1; dissolve += Time.deltaTime) //Macht die PocketDim größer
+        for (float dissolve = 0; dissolve <= 0.5; dissolve += Time.deltaTime) //Macht die PocketDim größer
         {
              transform.localScale= new Vector3(dissolve, dissolve, dissolve);
             yield return null;
@@ -68,11 +68,10 @@ public class PortalObjectSpawner : MonoBehaviour
         for (float dissolve = 1; dissolve >= 0; dissolve -= Time.deltaTime) //Baut den Swoosh Shader ab
         {
             ObSpMaterial.SetFloat("_DissolveAmount", dissolve);
+            
             yield return null;
         }
 
-
-        
         yield return new WaitForSeconds(5); // Verzögerung von 5 Sekunden
         for (float dissolve = 1; dissolve >= 0; dissolve -= Time.deltaTime) //Baut den Swoosh Shader ab
         {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5724132144769279732}
   - component: {fileID: 4114469753082104005}
   - component: {fileID: 2966835336314137427}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Stein1Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,6 +237,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4795002ef1fc1e64392c34b9e92c40f7, type: 3}
       propertyPath: m_Name
       value: PortalStein1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4795002ef1fc1e64392c34b9e92c40f7, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4795002ef1fc1e64392c34b9e92c40f7, type: 3}

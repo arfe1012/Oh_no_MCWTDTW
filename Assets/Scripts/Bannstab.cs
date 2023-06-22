@@ -164,7 +164,7 @@ public class Bannstab : MonoBehaviour
                 {
                     Line.GetComponent<LineRenderer>().positionCount = lineRendererSize + 1;
                     firstCandleLit = true;
-                    Debug.Log("" + firstCandleLit + Line.GetComponent<LineRenderer>().positionCount + lineRendererSize);
+                    
                 }
 
                 connections.Add(candleName + "+" + lastTwoCandles[1]);
@@ -352,7 +352,7 @@ public class Bannstab : MonoBehaviour
     private int checkForPattern()
     {
 
-        Debug.Log("Drawing Order: " + drawingOrder.Count);
+        
 
         
 
