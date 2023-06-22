@@ -9,8 +9,6 @@ public class Raycast : MonoBehaviour
     public GameObject origin;
     Vector3 originVector;
     public Vector3 direction;
-    public int layer;
-    int layerMask;
     public bool hitByLight;
     public bool isSource;
     RaycastHit hit;
@@ -18,8 +16,6 @@ public class Raycast : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        layerMask = 1 << layer;
-        layerMask = ~layerMask;
     }
 
     // Update is called once per frame
@@ -32,7 +28,7 @@ public class Raycast : MonoBehaviour
         if (hitByLight || isSource)
         {
             direction = origin.transform.forward;
-            if (Physics.Raycast(originVector, direction, out hit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(originVector, direction, out hit, Mathf.Infinity))
             {
                 Debug.DrawRay(originVector, direction * hit.distance, Color.yellow);
                 //Debug.Log("Did Hit");
