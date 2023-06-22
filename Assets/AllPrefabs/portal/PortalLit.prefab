@@ -85,13 +85,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2223319678273439594, guid: 83dc40e7e50ac6f4bb0118564902cd53, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1627826140209235527, guid: 83dc40e7e50ac6f4bb0118564902cd53, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 253414480157276244, guid: 83dc40e7e50ac6f4bb0118564902cd53, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2ec4c249fd84f844aa01f581951e71cf, type: 2}
+      objectReference: {fileID: 2100000, guid: 4150ef9b0b70ce24aa377218d4cc798a, type: 2}
     - target: {fileID: 919132149155446097, guid: 83dc40e7e50ac6f4bb0118564902cd53, type: 3}
       propertyPath: m_Name
       value: portal halbbund
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991518659607300024, guid: 83dc40e7e50ac6f4bb0118564902cd53, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83dc40e7e50ac6f4bb0118564902cd53, type: 3}
@@ -125,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2158456fe62e14142a104bb40b5173e0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.013
+      value: -0.002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2158456fe62e14142a104bb40b5173e0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -195,7 +207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2158456fe62e14142a104bb40b5173e0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.013
+      value: -0.002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2158456fe62e14142a104bb40b5173e0, type: 3}
       propertyPath: m_LocalRotation.w

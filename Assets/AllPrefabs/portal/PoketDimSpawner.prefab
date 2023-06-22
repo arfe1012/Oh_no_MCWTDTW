@@ -49,9 +49,9 @@ MonoBehaviour:
   PortalShape: {fileID: 2077049893606116996}
   material: {fileID: 2100000, guid: 03dd080656ae9874fabb96275a45759b, type: 2}
   ObSpMaterial: {fileID: 2100000, guid: ae4e054edfb67784f99abffdd8c65138, type: 2}
-  prefab1: {fileID: 919132149155446097, guid: a3d0e94240b495f48964859bff120c84, type: 3}
-  prefab2: {fileID: 919132149155446097, guid: cbf508114c5b98544b81570fb599dadb, type: 3}
-  prefab3: {fileID: 919132149155446097, guid: cbf508114c5b98544b81570fb599dadb, type: 3}
+  prefab1: {fileID: 3136783026335067532, guid: c431e3fd85c147f4b84d9a15f324d08a, type: 3}
+  prefab2: {fileID: 7175354403430183129, guid: a055f82fc82ff914295feff771fa86c8, type: 3}
+  prefab3: {fileID: 5709787078806657448, guid: 66dfefed7acd8804b9fbad3ec4330ac6, type: 3}
 --- !u!1 &8208579508822029803
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ SphereCollider:
   m_GameObject: {fileID: 8208579508822029803}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

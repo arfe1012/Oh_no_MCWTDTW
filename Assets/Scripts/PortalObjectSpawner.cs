@@ -19,8 +19,6 @@ public class PortalObjectSpawner : MonoBehaviour
     {
         material.SetFloat("_DissolveAmount", 0);
         ObSpMaterial.SetFloat("_DissolveAmount", 0);
-        SpawnPrefab1();
-
 
     }
 
@@ -30,19 +28,19 @@ public class PortalObjectSpawner : MonoBehaviour
         
     }
 
-    void SpawnPrefab1()
+    public void SpawnPrefab1()
     {
         prefabToSpawn = prefab1;
         StartCoroutine(SpawnPortalCoroutine());
     }
 
-    void SpawnPrefab2()
+    public void SpawnPrefab2()
     {
         prefabToSpawn = prefab1;
         StartCoroutine(SpawnPortalCoroutine());
     }
 
-    void SpawnPrefab3()
+    public void SpawnPrefab3()
     {
         prefabToSpawn = prefab1;
         StartCoroutine(SpawnPortalCoroutine());
