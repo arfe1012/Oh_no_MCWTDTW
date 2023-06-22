@@ -59,6 +59,7 @@ public class Raycast : MonoBehaviour
     void renderLine()
     {
         line.transform.eulerAngles = new Vector3(0, 0, 0);
+        line.transform.localScale = new Vector3(1.0f / origin.transform.localScale.x, 1.0f / origin.transform.localScale.y, 1.0f / origin.transform.localScale.z);
         line.positionCount = 2;
         line.SetPositions(points);
     }
