@@ -7,19 +7,27 @@ public class ExplosionScript : MonoBehaviour
     public bool isHit;
     Animator ani;
     float timer = 0.0f;
-    const float TIMETOEXPLODE = 1.0f;
+    const float TIMETOEXPLODE = 2.0f;
+    AudioSource audio;
+    public GameObject chain;
     // Start is called before the first frame update
     void Start()
     {
         ani = this.GetComponent<Animator>();
+        audio = this.GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isHit)
         {
+            if(!audio.isPlaying)
+            {
+                audio.Play();
+            }
             timer += Time.deltaTime;
+            this.transform.position += this.transform.right.normalized * 0.005f * (Mathf.Sin(Time.time * 15));
             if (timer >= TIMETOEXPLODE)
             {
                 ani.Play("Explode");
@@ -27,11 +35,14 @@ public class ExplosionScript : MonoBehaviour
         } else
         {
             timer = 0.0f;
+            audio.Stop();
         }
+        isHit = false;
     }
     void EndOfAnimation()
-    {
-        Debug.Log("Animation Ended");
+    {        
         this.gameObject.SetActive(false);
+        chain.SetActive(false);
+        this.GetComponentInParent<EvilFalldown>().chains -= 1;
     }
 }

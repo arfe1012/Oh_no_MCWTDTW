@@ -37,9 +37,9 @@ public class Raycast : MonoBehaviour
                 if (hit.transform.GetComponent<Raycast>())
                 {
                     hit.transform.GetComponent<Raycast>().hitByLight = true;
-                } else if (hit.transform.GetComponentInParent<ExplosionScript>())
+                } else if (hit.transform.GetComponent<ExplosionScript>())
                 {
-                    hit.transform.GetComponentInParent<ExplosionScript>().isHit = true;
+                    hit.transform.GetComponent<ExplosionScript>().isHit = true;
                 }
             }
             else
