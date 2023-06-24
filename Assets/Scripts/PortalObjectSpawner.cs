@@ -17,6 +17,7 @@ public class PortalObjectSpawner : MonoBehaviour
 
     private void Start()
     {
+        PortalShape.SetActive(false);
         material.SetFloat("_DissolveAmount", 0);
         ObSpMaterial.SetFloat("_DissolveAmount", 0);
 
@@ -50,6 +51,7 @@ public class PortalObjectSpawner : MonoBehaviour
     IEnumerator SpawnPortalCoroutine()
 
     {
+        PortalShape.SetActive(true);
         material.SetFloat("_DissolveAmount", 1);
         for (float dissolve = 0; dissolve <= 0.5; dissolve += Time.deltaTime) //Macht die PocketDim größer
         {
@@ -78,6 +80,7 @@ public class PortalObjectSpawner : MonoBehaviour
             material.SetFloat("_DissolveAmount", dissolve);
             yield return null;
         }
+        PortalShape.SetActive(false);
     }
 
 
