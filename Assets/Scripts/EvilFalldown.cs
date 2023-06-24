@@ -19,7 +19,7 @@ public class EvilFalldown : MonoBehaviour
         if (chains <= 0)
         {
             this.transform.position -= new Vector3(0, velocity * Time.deltaTime, 0);
-            velocity += 5;
+            velocity += 0.5f;
         }
     }
 }
