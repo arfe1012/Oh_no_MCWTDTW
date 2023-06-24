@@ -8,13 +8,12 @@ public class ExplosionScript : MonoBehaviour
     Animator ani;
     float timer = 0.0f;
     const float TIMETOEXPLODE = 2.0f;
-    AudioSource audio;
+    public AudioSource explosionAudio;
     public GameObject chain;
     // Start is called before the first frame update
     void Start()
     {
         ani = this.GetComponent<Animator>();
-        audio = this.GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,9 +21,9 @@ public class ExplosionScript : MonoBehaviour
     {
         if (isHit)
         {
-            if(!audio.isPlaying)
+            if(!explosionAudio.isPlaying)
             {
-                audio.Play();
+                explosionAudio.Play();
             }
             timer += Time.deltaTime;
             this.transform.position += this.transform.right.normalized * 0.005f * (Mathf.Sin(Time.time * 15));
@@ -35,7 +34,7 @@ public class ExplosionScript : MonoBehaviour
         } else
         {
             timer = 0.0f;
-            audio.Stop();
+            explosionAudio.Stop();
         }
         isHit = false;
     }

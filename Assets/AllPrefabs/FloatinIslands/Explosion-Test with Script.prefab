@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1100168085098241905}
-  - component: {fileID: 9113901895647725384}
+  - component: {fileID: 1775872318176340045}
   m_Layer: 12
   m_Name: Audio Source
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 1529483398586759088}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &9113901895647725384
+--- !u!82 &1775872318176340045
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2109c53e5b4a0634eaa8feba7c47f703, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.146
+  m_Volume: 0.207
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -53,9 +53,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 69.9
+  MaxDistance: 21.5
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -305,4 +305,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHit: 0
+  explosionAudio: {fileID: 1775872318176340045}
   chain: {fileID: 0}
