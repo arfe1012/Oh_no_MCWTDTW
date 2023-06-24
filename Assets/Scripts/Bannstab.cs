@@ -22,11 +22,11 @@ public class Bannstab : MonoBehaviour
     public GameObject[] flamesOfCandles4;
 
     //candle positions are fixed
-    private Vector3 candle0 = new Vector3(-1, 0, (float)-0.65);
-    private Vector3 candle1 = new Vector3((float)-1.04, 0, (float)0.6);
-    private Vector3 candle2 = new Vector3((float)0.3, 0, -1);
-    private Vector3 candle3 = new Vector3((float)0.2, 0, (float)1.105);
-    private Vector3 candle4 = new Vector3(1, 0, (float)0.1);
+    private Vector3 candle0 = new Vector3(-0.88f, 0.2f, -0.56f);
+    private Vector3 candle1 = new Vector3(-0.89f, 0.2f, 0.48f);
+    private Vector3 candle2 = new Vector3(0.24f, 0.4f, -0.97f);
+    private Vector3 candle3 = new Vector3(0.2f, 0.35f, 0.87f);
+    private Vector3 candle4 = new Vector3(0.91f, 0.35f, -0.02f);
 
     // For having a reference point (only used for line to tip of Bannstab)
     private Vector3 bannkreisCenter;
