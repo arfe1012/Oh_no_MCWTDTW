@@ -24,9 +24,9 @@ public class Bannstab : MonoBehaviour
     //candle positions are fixed
     private Vector3 candle0 = new Vector3(-0.88f, 0.2f, -0.56f);
     private Vector3 candle1 = new Vector3(-0.89f, 0.2f, 0.48f);
-    private Vector3 candle2 = new Vector3(0.24f, 0.4f, -0.97f);
+    private Vector3 candle2 = new Vector3(0.24f, 0.35f, -0.97f);
     private Vector3 candle3 = new Vector3(0.2f, 0.35f, 0.87f);
-    private Vector3 candle4 = new Vector3(0.91f, 0.35f, -0.02f);
+    private Vector3 candle4 = new Vector3(0.91f, 0.5f, -0.02f);
 
     // For having a reference point (only used for line to tip of Bannstab)
     private Vector3 bannkreisCenter;
@@ -271,7 +271,7 @@ public class Bannstab : MonoBehaviour
             // open Portal TODO Logik muss noch überarbeitet werden wann das Portal auf und zu geht
             if (!Portal.GetComponent<PortalManager>().switchPortal)
             {
-                //Portal.GetComponent<PortalManager>().switchPortal = true;
+                Portal.GetComponent<PortalManager>().switchPortal = true;
             }
 
         }
