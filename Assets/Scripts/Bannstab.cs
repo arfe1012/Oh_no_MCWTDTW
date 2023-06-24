@@ -352,11 +352,6 @@ public class Bannstab : MonoBehaviour
     private int checkForPattern()
     {
 
-        
-
-        
-
-
         if (drawingOrder.Count == 2 && connections.Contains("Pillar+Pillar (1)"))
         {
             return 0;
