@@ -15,7 +15,7 @@ public class ResetPlayer : MonoBehaviour
     {
         if(this.transform.position.y < -50)
         {
-            this.transform.position = new Vector3(20.61f, 8.726f, -23.23f);
+            this.transform.position = new Vector3(52.435f, 8.344f, -10.128f);
         }
     }
 }
