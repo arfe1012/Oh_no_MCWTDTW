@@ -20,10 +20,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveMat
+  m_Name: DissolveFullMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 35318022c6bc0364a8d532ef68ecec1c, type: 3}
   m_ValidKeywords:
   - _ALPHATEST_ON
+  - _RECEIVE_SHADOWS_OFF
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -31,7 +32,8 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: TransparentCutout
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -51,16 +53,16 @@ Material:
     m_Floats:
     - _AlphaClip: 1
     - _Blend: 0
-    - _CastShadows: 1
+    - _CastShadows: 0
     - _Cull: 2
-    - _DissolveAmount: 0.011203197
+    - _DissolveAmount: 1
     - _DstBlend: 0
     - _EdgeWidth: 0.02
     - _Edgewidth2: 0.27
     - _Offset1: 10.5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReceiveShadows: 1
+    - _ReceiveShadows: 0
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 1
