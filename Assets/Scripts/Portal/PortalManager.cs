@@ -10,7 +10,7 @@ using UnityEngine.Rendering.Universal;
 public class PortalManager : MonoBehaviour
 {
     [SerializeField] private Material material;
-
+    public GameObject FliegendeInselSzene;
     public float dissolveAmount;
     public bool switchPortal = false;
     public MeshRenderer InselRenderer;
@@ -36,12 +36,13 @@ public class PortalManager : MonoBehaviour
         additionalCameraData = Camera.transform.GetComponent<UniversalAdditionalCameraData>();
 
 
-        
+        /*
         sceneList[0] = "Außenwelt";
         sceneList[1] = "Floating Island";
 
         bool iShouldLoadAussenwelt = true;
         scenes = SceneManager.GetAllScenes();
+
         foreach (Scene sc in scenes) 
         {            
             if (sc.name == "Außenwelt")
@@ -52,10 +53,11 @@ public class PortalManager : MonoBehaviour
         {
             SceneManager.LoadScene("Außenwelt", LoadSceneMode.Additive);
         }
-
-        if (InselRenderer.enabled)
+        */
+        if (FliegendeInselSzene.activeSelf)
         {
             fliegendeInselActive = true;
+            StartCoroutine(SwitchingPortalCoroutine());
         }
     }
 
@@ -129,7 +131,8 @@ public class PortalManager : MonoBehaviour
             //Tauscht die Renderer zum Keller (leer) aus
             InselRenderer.enabled = false;
             KellerRenderer.enabled = true;
-            LoadScene(0);
+            //LoadScene(0);
+            FliegendeInselSzene.SetActive(false);
             RenderSettings.skybox = OberweltSkybox;
 
             fliegendeInselActive = false;
@@ -139,13 +142,14 @@ public class PortalManager : MonoBehaviour
             //Tauscht die Renderer zur Insel aus
             InselRenderer.enabled = true;
             KellerRenderer.enabled = false;
-            LoadScene(1);
+            //LoadScene(1);
+            FliegendeInselSzene.SetActive(true);
             RenderSettings.skybox = InselSkybox;
 
             fliegendeInselActive = true;
         }
 
-        for (float dissolve = 1; dissolve >= 0; dissolve -= Time.deltaTime) //Baut den Swoosh Shader auf
+        for (float dissolve = 1; dissolve >= 0; dissolve -= Time.deltaTime) //Baut den Swoosh Shader ab
         {
             material.SetFloat("_DissolveAmount", dissolve);
             yield return null;
@@ -165,7 +169,7 @@ public class PortalManager : MonoBehaviour
 
 
 
-
+    /*
     public void LoadScene(int index)
     {
 
@@ -181,7 +185,7 @@ public class PortalManager : MonoBehaviour
         SceneManager.LoadScene(sceneList[index], LoadSceneMode.Additive);
 
     }
-
+    */
 
 
 }
