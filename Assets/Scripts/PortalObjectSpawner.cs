@@ -14,18 +14,42 @@ public class PortalObjectSpawner : MonoBehaviour
     public GameObject prefab3;
 
     GameObject prefabToSpawn;
+    public bool collapse;
+    private float timer = 0.0f;
+
+
+    private Vector3 UrsprungsPosition;
+    private Vector3 StonePosition;
 
     private void Start()
     {
         PortalShape.SetActive(false);
         material.SetFloat("_DissolveAmount", 0);
         ObSpMaterial.SetFloat("_DissolveAmount", 0);
+        UrsprungsPosition = transform.localPosition;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (collapse)
+        {
+            timer += Time.deltaTime;
+            if (timer <= 5)
+            {
+                transform.localPosition += transform.right.normalized * 0.005f * (Mathf.Sin(Time.time * timer*3));
+                transform.localPosition += transform.up.normalized * 0.005f * (Mathf.Sin(Time.time * timer*4));
+            }
+            else
+            {
+                transform.localPosition = UrsprungsPosition;
+                material.SetFloat("_DissolveAmount", 0);
+                PortalShape.SetActive(false);
+                timer = 0;
+                collapse = false;
+            }
+        }
         
     }
 
@@ -37,13 +61,13 @@ public class PortalObjectSpawner : MonoBehaviour
 
     public void SpawnPrefab2()
     {
-        prefabToSpawn = prefab1;
+        prefabToSpawn = prefab2;
         StartCoroutine(SpawnPortalCoroutine());
     }
 
     public void SpawnPrefab3()
     {
-        prefabToSpawn = prefab1;
+        prefabToSpawn = prefab3;
         StartCoroutine(SpawnPortalCoroutine());
     }
 
@@ -74,24 +98,25 @@ public class PortalObjectSpawner : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(5); // Verzögerung von 5 Sekunden
-        for (float dissolve = 1; dissolve >= 0; dissolve -= Time.deltaTime) //Baut den Swoosh Shader ab
-        {
-            material.SetFloat("_DissolveAmount", dissolve);
-            yield return null;
-        }
-        PortalShape.SetActive(false);
     }
 
 
     void SpawnObject()
     {
         Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
+        if (other.gameObject.name.Contains("Stein"))
+        {
+            collapse = true;
+        }
     }
 
 
-    
 
-    
 
 }

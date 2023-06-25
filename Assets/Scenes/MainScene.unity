@@ -759,14 +759,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 26e4b52ccfb2e2144843ab4ec8e47a8d, type: 2}
-  Steinslot1: {fileID: 1451043850}
-  Steinslot2: {fileID: 632564718}
-  Steinslot3: {fileID: 1171323816}
   FliegendeInselSzene: {fileID: 1480610369}
   dissolveAmount: 0
   switchPortal: 0
   InselRenderer: {fileID: 866999546}
   KellerRenderer: {fileID: 1897802025}
+  CullingPlanes: {fileID: 408390593}
   Player: {fileID: 620174694}
   KellerCollider: {fileID: 1959465589}
   DimensionCollider: {fileID: 1513078898}
@@ -8613,6 +8611,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PoketDimSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 1657076837259851392, guid: 287488240f6b2fb40b9d9a853b5ef502, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657076837259851392, guid: 287488240f6b2fb40b9d9a853b5ef502, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 287488240f6b2fb40b9d9a853b5ef502, type: 3}
 --- !u!1 &699047182
@@ -12161,15 +12167,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7016328208690976053, guid: ff8ac6c40d723bf4f91d6a9aafc09b3f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.622
+      value: 1.572
       objectReference: {fileID: 0}
     - target: {fileID: 7016328208690976053, guid: ff8ac6c40d723bf4f91d6a9aafc09b3f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.16411245
+      value: -0.024
       objectReference: {fileID: 0}
     - target: {fileID: 7016328208690976053, guid: ff8ac6c40d723bf4f91d6a9aafc09b3f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.2580004
+      value: 2.253
       objectReference: {fileID: 0}
     - target: {fileID: 7016328208690976053, guid: ff8ac6c40d723bf4f91d6a9aafc09b3f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13473,6 +13479,9 @@ MonoBehaviour:
   - {fileID: 1577015883}
   - {fileID: 1610423194}
   - {fileID: 614550631}
+  Steinslot1: {fileID: 1451043850}
+  Steinslot2: {fileID: 632564718}
+  Steinslot3: {fileID: 1171323816}
 --- !u!1001 &1201891602
 PrefabInstance:
   m_ObjectHideFlags: 0

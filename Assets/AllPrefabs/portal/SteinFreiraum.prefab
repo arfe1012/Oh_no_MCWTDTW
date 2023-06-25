@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b62081e6c3d07940ad607012e185b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Particles: {fileID: 2156909489117436701}
   socketActivated: 0
 --- !u!1001 &7016328208286387802
 PrefabInstance:
@@ -295,8 +296,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissingStone
       objectReference: {fileID: 0}
+    - target: {fileID: 8985209659819627847, guid: 56f4927074acaf74ea50b5b742224a0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56f4927074acaf74ea50b5b742224a0c, type: 3}
+--- !u!1 &2156909489117436701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8985209659819627847, guid: 56f4927074acaf74ea50b5b742224a0c, type: 3}
+  m_PrefabInstance: {fileID: 7016328208286387802}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4228789110218573605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6624984299846814079, guid: 56f4927074acaf74ea50b5b742224a0c, type: 3}

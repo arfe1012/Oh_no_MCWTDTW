@@ -10,14 +10,12 @@ using UnityEngine.Rendering.Universal;
 public class PortalManager : MonoBehaviour
 {
     [SerializeField] private Material material;
-    public GameObject Steinslot1;
-    public GameObject Steinslot2;
-    public GameObject Steinslot3;
     public GameObject FliegendeInselSzene;
     public float dissolveAmount;
     public bool switchPortal = false;
     public MeshRenderer InselRenderer;
     public MeshRenderer KellerRenderer;
+    public GameObject CullingPlanes;
     public GameObject Player;
     public GameObject KellerCollider;
     public GameObject DimensionCollider;
@@ -87,7 +85,6 @@ public class PortalManager : MonoBehaviour
             else if (KellerCollider.GetComponent<PlayerColliding>().playerJustEntered == true && DimensionCollider.GetComponent<PlayerColliding>().playerInCollider == false)
             {
                 //Wenn Der Spieler vom Keller ins Poral geht, Werden die Inseln permanent sichtbar
-                if(Steinslot1.GetComponent<CheckforStone>().socketActivated && Steinslot2.GetComponent<CheckforStone>().socketActivated && Steinslot3.GetComponent<CheckforStone>().socketActivated )
                 SetFiltering(1);
                 Debug.Log("Insel An");
 
@@ -169,6 +166,14 @@ public class PortalManager : MonoBehaviour
         //Index 1 für die Inseln, Index 0 für den Keller
         additionalCameraData.SetRenderer(index);
         
+        if (index == 1)
+        {
+            CullingPlanes.SetActive(false);
+        }else if(index == 0)
+        {
+            CullingPlanes.SetActive(true);
+        }
+
     }
 
 

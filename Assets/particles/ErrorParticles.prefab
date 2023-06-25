@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5309229348764274857}
   - component: {fileID: 5360003112679314796}
   m_Layer: 0
-  m_Name: MissingStone
+  m_Name: ErrorParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

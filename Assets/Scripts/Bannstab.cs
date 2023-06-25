@@ -21,6 +21,12 @@ public class Bannstab : MonoBehaviour
     public GameObject[] flamesOfCandles3;
     public GameObject[] flamesOfCandles4;
 
+
+    //Slots der fehlenden Steine
+    public GameObject Steinslot1;
+    public GameObject Steinslot2;
+    public GameObject Steinslot3;
+
     //candle positions are fixed
     private Vector3 candle0 = new Vector3(-0.88f, 0.2f, -0.56f);
     private Vector3 candle1 = new Vector3(-0.89f, 0.2f, 0.48f);
@@ -268,11 +274,31 @@ public class Bannstab : MonoBehaviour
             // Remove Line to the Bannstab
             Line.GetComponent<LineRenderer>().SetPosition(lineRendererSize, Line.GetComponent<LineRenderer>().GetPosition(lineRendererSize - 1));
 
-            // open Portal TODO Logik muss noch überarbeitet werden wann das Portal auf und zu geht
-            if (!Portal.GetComponent<PortalManager>().switchPortal)
+            if (Steinslot1.GetComponent<CheckforStone>().socketActivated && Steinslot2.GetComponent<CheckforStone>().socketActivated && Steinslot3.GetComponent<CheckforStone>().socketActivated)
             {
-                Portal.GetComponent<PortalManager>().switchPortal = true;
+                // open Portal TODO Logik muss noch überarbeitet werden wann das Portal auf und zu geht
+                if (!Portal.GetComponent<PortalManager>().switchPortal)
+                {
+                    Portal.GetComponent<PortalManager>().switchPortal = true;
+                }
             }
+            else //Wenn Nicht alle Steinsockets belegt sind, aktivieren sich alle Partikel die nicht belegt sind
+            {
+                if (!Steinslot1.GetComponent<CheckforStone>().socketActivated)
+                {
+                    Steinslot1.GetComponent<CheckforStone>().ActivateParticle();
+                }
+                if (!Steinslot2.GetComponent<CheckforStone>().socketActivated)
+                {
+                    Steinslot2.GetComponent<CheckforStone>().ActivateParticle();
+                }
+                if (!Steinslot3.GetComponent<CheckforStone>().socketActivated)
+                {
+                    Steinslot3.GetComponent<CheckforStone>().ActivateParticle();
+                }
+            }
+
+            
 
         }
         else if (checkForPattern() == 1) //Checkt auf Baustein1 Muster
@@ -347,24 +373,36 @@ public class Bannstab : MonoBehaviour
         {
             Portal.GetComponent<PortalManager>().switchPortal = true;
         }
+        
+        //Schaltet alle Partikel aus
+        Steinslot1.GetComponent<CheckforStone>().DeactivateParticle();
+        Steinslot2.GetComponent<CheckforStone>().DeactivateParticle();
+        Steinslot3.GetComponent<CheckforStone>().DeactivateParticle();
+
+        //PocketPortal.GetComponent<PortalObjectSpawner>().collapse = true;
     }
 
     private int checkForPattern()
     {
 
-        if (drawingOrder.Count == 2 && connections.Contains("Pillar+Pillar (1)"))
+        if ((drawingOrder.Count == 2 && connections.Contains("Pillar+Pillar (1)"))
+                    || (drawingOrder.Count == 6 && connections.Contains("Pillar+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (1)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar+Pillar (4)")))
         {
             return 0;
         }
-        else if (drawingOrder.Count == 2 && connections.Contains("Pillar (1)+Pillar (3)"))
+        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (1)+Pillar (3)"))
+                    || (drawingOrder.Count == 5 && connections.Contains("Pillar (2)+Pillar") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)")))
         {
             return 1;
         }
-        else if (drawingOrder.Count == 2 && connections.Contains("Pillar (3)+Pillar (4)"))
+        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (3)+Pillar (4)")) 
+                    || (drawingOrder.Count == 5 && connections.Contains("Pillar (2)+Pillar") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)")))
         {
             return 2;
         }
-        else if (drawingOrder.Count == 2 && connections.Contains("Pillar (4)+Pillar (2)"))
+        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (4)+Pillar (2)"))
+                    || (drawingOrder.Count == 7 && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (3)+Pillar (4)") && connections.Contains("Pillar (4)+Pillar (2)") && connections.Contains("Pillar (3)+Pillar (2)")))
+
         {
             return 3;
         }

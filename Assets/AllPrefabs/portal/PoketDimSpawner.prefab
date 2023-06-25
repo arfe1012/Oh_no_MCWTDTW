@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1158058484622346437}
   - component: {fileID: 1158058484622346436}
+  - component: {fileID: 3989791248921393343}
   m_Layer: 0
   m_Name: PoketDimSpawner
   m_TagString: Untagged
@@ -52,6 +53,20 @@ MonoBehaviour:
   prefab1: {fileID: 3136783026335067532, guid: c431e3fd85c147f4b84d9a15f324d08a, type: 3}
   prefab2: {fileID: 7175354403430183129, guid: a055f82fc82ff914295feff771fa86c8, type: 3}
   prefab3: {fileID: 5709787078806657448, guid: 66dfefed7acd8804b9fbad3ec4330ac6, type: 3}
+  collapse: 0
+--- !u!135 &3989791248921393343
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158058484622346439}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8208579508822029803
 GameObject:
   m_ObjectHideFlags: 0

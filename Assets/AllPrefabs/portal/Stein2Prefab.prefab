@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7602135176153869115}
   - component: {fileID: 2857731997966134398}
   - component: {fileID: 1354646637875442785}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Stein2Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -233,6 +233,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 85dfca9b66a68914c8007c170f4ce0ed, type: 3}
       propertyPath: m_Name
       value: PortalStein2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 85dfca9b66a68914c8007c170f4ce0ed, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85dfca9b66a68914c8007c170f4ce0ed, type: 3}
