@@ -11,6 +11,7 @@ public class PortalManager : MonoBehaviour
 {
     [SerializeField] private Material material;
     public GameObject FliegendeInselSzene;
+    public GameObject Außenwelt;
     public float dissolveAmount;
     public bool switchPortal = false;
     public MeshRenderer InselRenderer;
@@ -86,6 +87,7 @@ public class PortalManager : MonoBehaviour
             {
                 //Wenn Der Spieler vom Keller ins Poral geht, Werden die Inseln permanent sichtbar
                 SetFiltering(1);
+                
                 Debug.Log("Insel An");
 
             }
@@ -93,18 +95,21 @@ public class PortalManager : MonoBehaviour
             {
                 //Wenn Der Spieler vom Keller ins Poral schaut, aber wieder zurück geht, Werden die Inseln wieder nur durchs Portal sichtbar
                 SetFiltering(0);
+                
                 Debug.Log("Insel Aus");
             }
             else if (KellerCollider.GetComponent<PlayerColliding>().playerInCollider == true && DimensionCollider.GetComponent<PlayerColliding>().playerJustExited == true)
             {
                 //Wenn Der Spieler die Dimension verlässt, switched das Spiel wieder zur einzigen Sicht durch das Portal
                 SetFiltering(0);
+                
                 Debug.Log("Insel Aus");
             }
             else if (KellerCollider.GetComponent<PlayerColliding>().playerInCollider == true && DimensionCollider.GetComponent<PlayerColliding>().playerJustEntered == true)
             {
                 //Wenn Der Spieler dann aber wieder zurück geht, wird die Dimension wieder eingeblendet
                 SetFiltering(1);
+                
                 Debug.Log("Insel An");
             }
 
@@ -134,6 +139,7 @@ public class PortalManager : MonoBehaviour
             KellerRenderer.enabled = true;
             //LoadScene(0);
             FliegendeInselSzene.SetActive(false);
+            Außenwelt.SetActive(true);
             RenderSettings.skybox = OberweltSkybox;
 
             fliegendeInselActive = false;
@@ -145,6 +151,7 @@ public class PortalManager : MonoBehaviour
             KellerRenderer.enabled = false;
             //LoadScene(1);
             FliegendeInselSzene.SetActive(true);
+            Außenwelt.SetActive(false);
             RenderSettings.skybox = InselSkybox;
 
             fliegendeInselActive = true;
