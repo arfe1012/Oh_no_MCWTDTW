@@ -38,8 +38,8 @@ public class PortalObjectSpawner : MonoBehaviour
             timer += Time.deltaTime;
             if (timer <= 5)
             {
-                transform.localPosition += transform.right.normalized * 0.005f * (Mathf.Sin(Time.time * timer*3));
-                transform.localPosition += transform.up.normalized * 0.005f * (Mathf.Sin(Time.time * timer*4));
+                transform.localPosition += transform.right.normalized * 0.01f * (Mathf.Sin(Time.time * timer*3));
+                transform.localPosition += transform.up.normalized * 0.01f * (Mathf.Sin(Time.time * timer*4));
             }
             else
             {
@@ -103,8 +103,10 @@ public class PortalObjectSpawner : MonoBehaviour
 
     void SpawnObject()
     {
-        Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
-        
+        if (GameObject.Find(prefabToSpawn.name + "(Clone)") == null)
+        { 
+            Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+        }
     }
 
     private void OnTriggerExit(Collider other)

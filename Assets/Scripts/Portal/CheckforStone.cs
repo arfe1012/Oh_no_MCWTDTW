@@ -5,8 +5,10 @@ using UnityEngine;
 public class CheckforStone : MonoBehaviour
 {
     public GameObject Particles;
+    public GameObject RightStone;
 
     public bool socketActivated = false;
+    public bool rightStoneInSocket;
     
     // Start is called before the first frame update
     void Start()
@@ -34,4 +36,22 @@ public class CheckforStone : MonoBehaviour
         Particles.SetActive(false);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.name == (RightStone.name + "(Clone)"))
+        {
+
+            rightStoneInSocket = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.gameObject.name == (RightStone.name + "(Clone)"))
+        {
+
+            rightStoneInSocket = false;
+        }
+    }
 }

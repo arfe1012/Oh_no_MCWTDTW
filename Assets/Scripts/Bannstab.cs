@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bannstab : MonoBehaviour
 {
+    public bool testMuster;
     // Flames of Bannstab
     public GameObject Flame1;
     public GameObject Flame2;
@@ -227,7 +228,7 @@ public class Bannstab : MonoBehaviour
                     Debug.Log("" + firstCandleLit + Line.GetComponent<LineRenderer>().positionCount + lineRendererSize);
                 }
 
-                connections.Add(candleName + "+" + lastTwoCandles[0]);
+                connections.Add(candleName + "+" + lastTwoCandles[1]);
                 connections.Add(lastTwoCandles[1] + "+" + candleName);
                 return true;
             }
@@ -334,7 +335,7 @@ public class Bannstab : MonoBehaviour
         else
         {
             //setzt die Linie und das Portal zurück mit resetBannkreis()
-            Debug.Log("Wrong order: " );
+            Debug.Log("Wrong order" );
             firstCandleLit = false;
             resetBannkreis();
         }
@@ -385,25 +386,25 @@ public class Bannstab : MonoBehaviour
     private int checkForPattern()
     {
 
-        if ((drawingOrder.Count == 2 && connections.Contains("Pillar+Pillar (1)")) //Pentagram für Portal
+        if ((drawingOrder.Count == 2 && connections.Contains("Pillar+Pillar (1)") && testMuster) //Pentagram für Portal
                     || (drawingOrder.Count == 6 && connections.Contains("Pillar+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (1)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar+Pillar (4)")))
         {
             return 0;
         }
-        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (1)+Pillar (3)")) //Form 1 Für Stein 1
+        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (1)+Pillar (3)") && testMuster) //Form 1 Für Stein 1
                     || (drawingOrder.Count == 5 && connections.Contains("Pillar+Pillar (2)") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)")))
         {
             return 1;
         }
-        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (3)+Pillar (4)")) //Form 5 Für Stein 2
-                    || (drawingOrder.Count == 5 && connections.Contains("Pillar+Pillar (2)") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (2)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (2)+Pillar (4)") && connections.Contains("Pillar (3)+Pillar (4)")))
+        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (3)+Pillar (4)") && testMuster) //Form 5 Für Stein 2
+                    || (drawingOrder.Count == 7 && connections.Contains("Pillar+Pillar (2)") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (2)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (2)+Pillar (4)") && connections.Contains("Pillar (3)+Pillar (4)")))
         {
             return 2;
         }
-        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (4)+Pillar (2)")) //Form 3 Für Stein 3
-                    || (drawingOrder.Count == 7 && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (3)+Pillar (4)") && connections.Contains("Pillar (4)+Pillar (2)") && connections.Contains("Pillar (3)+Pillar (2)")))
-
+        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (4)+Pillar (2)") && testMuster) //Form 3 Für Stein 3
+                    || (drawingOrder.Count == 7 && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (4)") && connections.Contains("Pillar (3)+Pillar (4)")))
         {
+            Debug.Log(drawingOrder.Count);
             return 3;
         }
         else
