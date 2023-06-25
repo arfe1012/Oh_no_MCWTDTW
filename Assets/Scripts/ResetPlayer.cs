@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ResetPlayer : MonoBehaviour
 {
+    public float TheVoid;
+    public GameObject spawnPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,9 +15,9 @@ public class ResetPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.transform.position.y < -50)
+        if(this.transform.position.y < TheVoid)
         {
-            this.transform.position = new Vector3(52.435f, 8.344f, -10.128f);
+            this.transform.position = spawnPosition.transform.position;
         }
     }
 }

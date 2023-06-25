@@ -28,7 +28,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap:
     RenderType: TransparentCutout
   disabledShaderPasses: []
@@ -53,7 +53,7 @@ Material:
     - _Blend: 0
     - _CastShadows: 1
     - _Cull: 2
-    - _DissolveAmount: 0.012044661
+    - _DissolveAmount: 0.0016347766
     - _DstBlend: 0
     - _EdgeWidth: 0.02
     - _Edgewidth2: 0.27
