@@ -385,22 +385,22 @@ public class Bannstab : MonoBehaviour
     private int checkForPattern()
     {
 
-        if ((drawingOrder.Count == 2 && connections.Contains("Pillar+Pillar (1)"))
+        if ((drawingOrder.Count == 2 && connections.Contains("Pillar+Pillar (1)")) //Pentagram für Portal
                     || (drawingOrder.Count == 6 && connections.Contains("Pillar+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (1)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar+Pillar (4)")))
         {
             return 0;
         }
-        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (1)+Pillar (3)"))
-                    || (drawingOrder.Count == 5 && connections.Contains("Pillar (2)+Pillar") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)")))
+        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (1)+Pillar (3)")) //Form 1 Für Stein 1
+                    || (drawingOrder.Count == 5 && connections.Contains("Pillar+Pillar (2)") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)")))
         {
             return 1;
         }
-        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (3)+Pillar (4)")) 
-                    || (drawingOrder.Count == 5 && connections.Contains("Pillar (2)+Pillar") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)")))
+        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (3)+Pillar (4)")) //Form 5 Für Stein 2
+                    || (drawingOrder.Count == 5 && connections.Contains("Pillar+Pillar (2)") && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (2)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (2)+Pillar (4)") && connections.Contains("Pillar (3)+Pillar (4)")))
         {
             return 2;
         }
-        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (4)+Pillar (2)"))
+        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (4)+Pillar (2)")) //Form 3 Für Stein 3
                     || (drawingOrder.Count == 7 && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (3)+Pillar (4)") && connections.Contains("Pillar (4)+Pillar (2)") && connections.Contains("Pillar (3)+Pillar (2)")))
 
         {
