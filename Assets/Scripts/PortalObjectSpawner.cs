@@ -36,7 +36,7 @@ public class PortalObjectSpawner : MonoBehaviour
         if (collapse)
         {
             timer += Time.deltaTime;
-            if (timer <= 5)
+            if (timer <= 3)
             {
                 transform.localPosition += transform.right.normalized * 0.01f * (Mathf.Sin(Time.time * timer*3));
                 transform.localPosition += transform.up.normalized * 0.01f * (Mathf.Sin(Time.time * timer*4));
@@ -91,7 +91,7 @@ public class PortalObjectSpawner : MonoBehaviour
 
         SpawnObject(); //Spawnt das Gewünschte Objekt
 
-        for (float dissolve = 1; dissolve >= 0; dissolve -= Time.deltaTime) //Baut den Swoosh Shader ab
+        for (float dissolve = 1f; dissolve >= 0; dissolve -= Time.deltaTime) //Baut den Swoosh Shader ab
         {
             ObSpMaterial.SetFloat("_DissolveAmount", dissolve);
             
