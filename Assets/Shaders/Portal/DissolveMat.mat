@@ -53,7 +53,7 @@ Material:
     - _Blend: 0
     - _CastShadows: 1
     - _Cull: 2
-    - _DissolveAmount: 0.010834584
+    - _DissolveAmount: 0.033428174
     - _DstBlend: 0
     - _EdgeWidth: 0.02
     - _Edgewidth2: 0.27
