@@ -6,14 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2a753ae3c4a672644b9cf094a578cb1a
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: "Assets/Scenes/Au\xDFenwelt.unity"
-    guid: e2bf018b80126e54d9722999732cb92d
-  - enabled: 1
-    path: Assets/Scenes/Floating Island.unity
-    guid: 5abd1e5346f4a1b4498e55d006e869fb
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8be14d3c940261d45a9b6040cdd816b2, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e47e5956dde41574e8da6c5bd219d30e, type: 2}
