@@ -51,6 +51,8 @@ public class Bannstab : MonoBehaviour
     private bool firstCandleLit = false;
     private List<string> lastTwoCandles = new List<string>();
 
+    AudioSource audioData;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +64,7 @@ public class Bannstab : MonoBehaviour
         Flame2.GetComponent<Collider>().enabled = false;
         Line.GetComponent<LineRenderer>().positionCount = 0;
         bannkreisCenter.Set(4.8f, 0.8f, 3.75f);
+        audioData = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -337,6 +340,10 @@ public class Bannstab : MonoBehaviour
             //setzt die Linie und das Portal zurück mit resetBannkreis()
             Debug.Log("Wrong order" );
             firstCandleLit = false;
+            if (drawingOrder.Count>0) 
+            {
+                audioData.Play(0);
+            }
             resetBannkreis();
         }
     }
@@ -401,8 +408,8 @@ public class Bannstab : MonoBehaviour
         {
             return 2;
         }
-        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (4)+Pillar (2)") && testMuster) //Form 3 Für Stein 3
-                    || (drawingOrder.Count == 7 && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (4)") && connections.Contains("Pillar (3)+Pillar (4)")))
+        else if ((drawingOrder.Count == 2 && connections.Contains("Pillar (4)+Pillar (2)") && testMuster) //Form 2 Für Stein 3
+                    || (drawingOrder.Count == 7 && connections.Contains("Pillar+Pillar (4)") && connections.Contains("Pillar+Pillar (1)") && connections.Contains("Pillar (1)+Pillar (4)") && connections.Contains("Pillar (1)+Pillar (3)") && connections.Contains("Pillar (2)+Pillar (4)") && connections.Contains("Pillar (3)+Pillar (4)")))
         {
             Debug.Log(drawingOrder.Count);
             return 3;

@@ -12,10 +12,14 @@ public class Raycast : MonoBehaviour
     public bool hitByLight;
     public bool isSource;
     RaycastHit hit;
+    AudioSource audioData;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioData = GetComponent<AudioSource>();
+        audioData.Play(0);
+        audioData.Pause();
     }
 
     // Update is called once per frame
@@ -27,6 +31,7 @@ public class Raycast : MonoBehaviour
         
         if (hitByLight || isSource)
         {
+            audioData.UnPause();
             direction = origin.transform.forward;
             if (Physics.Raycast(originVector, direction, out hit, Mathf.Infinity))
             {
@@ -50,6 +55,7 @@ public class Raycast : MonoBehaviour
             }
         } else
         {
+            audioData.Pause();
             points[1] = points[0];
         }
         renderLine();

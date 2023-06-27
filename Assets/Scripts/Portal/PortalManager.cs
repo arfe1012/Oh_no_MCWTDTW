@@ -9,6 +9,7 @@ using UnityEngine.Rendering.Universal;
 
 public class PortalManager : MonoBehaviour
 {
+    
     [SerializeField] private Material material;
     public GameObject FliegendeInselSzene;
     public GameObject Auﬂenwelt;
@@ -16,10 +17,12 @@ public class PortalManager : MonoBehaviour
     public bool switchPortal = false;
     public MeshRenderer InselRenderer;
     public MeshRenderer KellerRenderer;
+    public BoxCollider KellerRendererCollider;
     public GameObject CullingPlanes;
     public GameObject Player;
     public GameObject KellerCollider;
     public GameObject DimensionCollider;
+    
     UniversalAdditionalCameraData additionalCameraData;
     public Camera Camera;
 
@@ -27,12 +30,15 @@ public class PortalManager : MonoBehaviour
     public Material InselSkybox;
 
     public bool fliegendeInselActive = false;
-
+    public bool behindPortal;
 
     private Scene[] scenes;
     private string[] sceneList = new string[2];
+    public GameObject CameraOb;
+    public GameObject behindChecker;
+    private bool inselRendered = false;
+    private bool kellerRendered = false;
 
-    
     private void Start()
     {
         additionalCameraData = Camera.transform.GetComponent<UniversalAdditionalCameraData>();
@@ -66,14 +72,33 @@ public class PortalManager : MonoBehaviour
 
     void Update()
     {
-        
+        behindPortal = Vector2.Dot(
+          CameraOb.transform.position - behindChecker.transform.position,
+          behindChecker.transform.right
+        ) < 0;
+
+
+        if(behindPortal && !inselRendered)
+        {
+            SetFiltering(1);
+            inselRendered = true;
+            kellerRendered = false;
+        }
+        if (!behindPortal && !kellerRendered)
+        {
+            SetFiltering(0);
+            kellerRendered = true;
+            inselRendered = false;
+        }
+
+
         if (switchPortal) //Startet den Portal Spawn, wenn switchPortal == true
         {
             StartCoroutine(SwitchingPortalCoroutine());
             switchPortal = false;
         }
 
-        
+        /*
         if (fliegendeInselActive) // Aktiviert die Sicht auf die Fliegenden Inseln permanent, wenn der Character von Kellerseite durch das Portal steigt
         {
 
@@ -120,7 +145,7 @@ public class PortalManager : MonoBehaviour
             DimensionCollider.GetComponent<PlayerColliding>().playerJustExited = false;
         }
 
-
+        */
 
     }
 
@@ -137,6 +162,7 @@ public class PortalManager : MonoBehaviour
             //Tauscht die Renderer zum Keller (leer) aus
             InselRenderer.enabled = false;
             KellerRenderer.enabled = true;
+            KellerRendererCollider.enabled = true;
             //LoadScene(0);
             FliegendeInselSzene.SetActive(false);
             Auﬂenwelt.SetActive(true);
@@ -149,6 +175,7 @@ public class PortalManager : MonoBehaviour
             //Tauscht die Renderer zur Insel aus
             InselRenderer.enabled = true;
             KellerRenderer.enabled = false;
+            KellerRendererCollider.enabled = false;
             //LoadScene(1);
             FliegendeInselSzene.SetActive(true);
             Auﬂenwelt.SetActive(false);

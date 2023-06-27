@@ -2,16 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PortalObjectSpawner : MonoBehaviour
 {
     public GameObject PortalShape;
+    public GameObject Sphere;
     [SerializeField] private Material material;
     [SerializeField] private Material ObSpMaterial;
 
     public GameObject prefab1;
     public GameObject prefab2;
     public GameObject prefab3;
+
+    AudioSource audioData;
 
     GameObject prefabToSpawn;
     public bool collapse;
@@ -28,6 +32,9 @@ public class PortalObjectSpawner : MonoBehaviour
         ObSpMaterial.SetFloat("_DissolveAmount", 0);
         UrsprungsPosition = transform.localPosition;
 
+        audioData = GetComponent<AudioSource>();
+        
+
     }
 
     // Update is called once per frame
@@ -35,7 +42,12 @@ public class PortalObjectSpawner : MonoBehaviour
     {
         if (collapse)
         {
+            if (timer == 0)
+            {
+                audioData.Play(0);
+            }
             timer += Time.deltaTime;
+            
             if (timer <= 3)
             {
                 transform.localPosition += transform.right.normalized * 0.01f * (Mathf.Sin(Time.time * timer*3));
@@ -105,7 +117,7 @@ public class PortalObjectSpawner : MonoBehaviour
     {
         if (GameObject.Find(prefabToSpawn.name + "(Clone)") == null)
         { 
-            Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+            Instantiate(prefabToSpawn, Sphere.transform.position, Quaternion.identity);
         }
     }
 
