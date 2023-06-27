@@ -10,6 +10,7 @@ public class ExplosionScript : MonoBehaviour
     const float TIMETOEXPLODE = 2.0f;
     public AudioSource explosionAudio;
     public GameObject chain;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,8 @@ public class ExplosionScript : MonoBehaviour
             if (timer >= TIMETOEXPLODE)
             {
                 ani.Play("Explode");
-            } 
+                
+} 
         } else
         {
             timer = 0.0f;
