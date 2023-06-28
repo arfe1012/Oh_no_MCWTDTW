@@ -38,6 +38,7 @@ public class PortalManager : MonoBehaviour
     public GameObject behindChecker;
     private bool inselRendered = false;
     private bool kellerRendered = false;
+    public AudioSource PortalAudio;
 
     private void Start()
     {
@@ -94,6 +95,7 @@ public class PortalManager : MonoBehaviour
 
         if (switchPortal) //Startet den Portal Spawn, wenn switchPortal == true
         {
+            
             StartCoroutine(SwitchingPortalCoroutine());
             switchPortal = false;
         }
@@ -151,8 +153,10 @@ public class PortalManager : MonoBehaviour
 
     IEnumerator SwitchingPortalCoroutine()
     {
+        
         for (float dissolve = 0; dissolve <= 1; dissolve += Time.deltaTime) //Baut den Swoosh Shader auf
         {
+            PortalAudio.Play();
             material.SetFloat("_DissolveAmount", dissolve);
             yield return null;
         }
