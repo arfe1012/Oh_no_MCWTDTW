@@ -31,6 +31,7 @@ public class PortalManager : MonoBehaviour
 
     public bool fliegendeInselActive = false;
     public bool behindPortal;
+    public GameObject PortalLight;
 
     private Scene[] scenes;
     private string[] sceneList = new string[2];
@@ -39,6 +40,7 @@ public class PortalManager : MonoBehaviour
     private bool inselRendered = false;
     private bool kellerRendered = false;
     public AudioSource PortalAudio;
+    public AudioSource ElevatorPing;
 
     private void Start()
     {
@@ -153,10 +155,11 @@ public class PortalManager : MonoBehaviour
 
     IEnumerator SwitchingPortalCoroutine()
     {
-        
+        PortalLight.SetActive(true);
+        PortalLight.GetComponent<Light>().intensity = 300;
+        PortalAudio.Play();
         for (float dissolve = 0; dissolve <= 1; dissolve += Time.deltaTime) //Baut den Swoosh Shader auf
         {
-            PortalAudio.Play();
             material.SetFloat("_DissolveAmount", dissolve);
             yield return null;
         }
@@ -188,11 +191,15 @@ public class PortalManager : MonoBehaviour
             fliegendeInselActive = true;
         }
 
+        
         for (float dissolve = 1; dissolve >= 0; dissolve -= Time.deltaTime) //Baut den Swoosh Shader ab
         {
+            PortalLight.GetComponent<Light>().intensity = dissolve * 300;
             material.SetFloat("_DissolveAmount", dissolve);
             yield return null;
         }
+        ElevatorPing.Play();
+        PortalLight.SetActive(false);
     }
 
 
