@@ -11361,7 +11361,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: " Laufen: Linker Joystick\nTeleportieren: Linker Zeigefinger\nGreifen:
+  m_text: " Laufen: Linker Joystick\nTeleportieren: Linker Mittelfinger\nGreifen:
     Jeweils Mittelfinger\nSnap-Turn: Rechter Joystick\n\nEs wird empfohlen, im Stehen
     und \nmit Ton zu spielen\nViel Spa\xDF :)"
   m_isRightToLeft: 0

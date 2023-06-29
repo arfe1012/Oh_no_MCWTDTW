@@ -9,14 +9,14 @@ public class AudioMonologManager : MonoBehaviour
     public GameObject Monolog2;
     public GameObject Monolog3;
     public GameObject Monolog4;
-
+    public GameObject Winning;
 
     AudioSource MonologAudio1;
     AudioSource MonologAudio2;
     AudioSource MonologAudio3;
     AudioSource MonologAudio4;
+    AudioSource WinningAudio;
 
-    
     public float updateStep = 0.1f;
     public int sampleDataLength = 1024;
 
@@ -50,6 +50,7 @@ public class AudioMonologManager : MonoBehaviour
         MonologAudio2 = Monolog2.GetComponent<AudioSource>();
         MonologAudio3 = Monolog3.GetComponent<AudioSource>();
         MonologAudio4 = Monolog4.GetComponent<AudioSource>();
+        WinningAudio = Winning.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -77,6 +78,8 @@ public class AudioMonologManager : MonoBehaviour
             MonologAudio4.Play(0);
             Mon4Played = true;
             Debug.Log("Monolog4");
+            StartCoroutine(Wait());
+
         }
 
         //Setzt das ShaderMat auf die Lautstärke
@@ -126,5 +129,9 @@ public class AudioMonologManager : MonoBehaviour
             Debug.Log("Monolog1");
         }
     }
-
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(8);
+        WinningAudio.Play(0);
+    }
 }
