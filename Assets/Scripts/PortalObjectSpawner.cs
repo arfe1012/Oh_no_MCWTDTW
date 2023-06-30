@@ -89,9 +89,15 @@ public class PortalObjectSpawner : MonoBehaviour
     {
         PortalShape.SetActive(true);
         material.SetFloat("_DissolveAmount", 1);
-        for (float dissolve = 0; dissolve <= 0.5; dissolve += Time.deltaTime) //Macht die PocketDim größer
+
+        for (float dissolve = 0; dissolve <= 1; dissolve += Time.deltaTime) //Macht die PocketDim größer
         {
-             transform.localScale= new Vector3(dissolve, dissolve, dissolve);
+            PortalShape.transform.localScale = new Vector3(dissolve, 0.01f, dissolve);
+            yield return null;
+        }
+        for (float dissolve = 0; dissolve <= 1; dissolve += Time.deltaTime)
+        {
+            PortalShape.transform.localScale= new Vector3(1, dissolve, 1);
             yield return null;
         }
 
@@ -118,6 +124,10 @@ public class PortalObjectSpawner : MonoBehaviour
         if (GameObject.Find(prefabToSpawn.name + "(Clone)") == null)
         { 
             Instantiate(prefabToSpawn, Sphere.transform.position, Quaternion.identity);
+        }
+        else
+        {
+            collapse = true;
         }
     }
 
