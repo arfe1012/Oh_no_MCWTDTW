@@ -42,7 +42,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DissolveAmount: 0.5966826
+    - _DissolveAmount: 0.14754242
     - _DissolveScale: 2.42
     - _DistortionAmount: 0.04
     - _DistortionScale: -0.49
