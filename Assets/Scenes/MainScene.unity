@@ -26927,7 +26927,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 20
-  MaxDistance: 40
+  MaxDistance: 400
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -28301,7 +28301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1335043898
 Transform:
   m_ObjectHideFlags: 0
@@ -35640,7 +35640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1480610370
 Transform:
   m_ObjectHideFlags: 0
