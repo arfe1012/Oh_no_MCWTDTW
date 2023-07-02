@@ -116,7 +116,7 @@ public class AudioMonologManager : MonoBehaviour
 
             clipLoudness *= sizeFactor;
             clipLoudness = Mathf.Clamp(clipLoudness, minSize, maxSize);
-            material.SetFloat("_DissolveAmount", clipLoudness*9);
+            material.SetFloat("_Transparency", clipLoudness*9);
         }
     }
 

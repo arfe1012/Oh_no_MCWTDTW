@@ -42,14 +42,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DissolveAmount: 0.14754242
+    - _DissolveAmount: 0.7
     - _DissolveScale: 2.42
     - _DistortionAmount: 0.04
     - _DistortionScale: -0.49
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Transparencx: 0.407
-    - _Transparency: 1
+    - _Transparency: 0.47104686
     m_Colors:
     - _Color: {r: 19.46857, g: 0.5096484, b: 2.007114, a: 0}
     - _DissolveSpeed: {r: -0.1, g: 0.16, b: 0, a: 0}
