@@ -34,7 +34,7 @@ public class Bannstab : MonoBehaviour
     private Vector3 candle2 = new Vector3(0.24f, 0.35f, -0.97f);
     private Vector3 candle3 = new Vector3(0.2f, 0.35f, 0.87f);
     private Vector3 candle4 = new Vector3(0.91f, 0.5f, -0.02f);
-
+    
     // For having a reference point (only used for line to tip of Bannstab)
     private Vector3 bannkreisCenter;
 
@@ -50,6 +50,8 @@ public class Bannstab : MonoBehaviour
     // So the tip of Bannstab is only connected, if a candle is already lit
     private bool firstCandleLit = false;
     private List<string> lastTwoCandles = new List<string>();
+    private bool waitforstones = false;
+    private bool alreadychecked = false;
 
     AudioSource audioData;
 
@@ -80,6 +82,34 @@ public class Bannstab : MonoBehaviour
                 Line.GetComponent<LineRenderer>().SetPosition(currentLineCount - 1, GameObject.Find("BannstabFlamme1").transform.position - bannkreisCenter);
             }
         }
+
+        if (waitforstones)
+        {
+            if (Steinslot1.GetComponent<CheckforStone>().socketActivated)
+            {
+                Steinslot1.GetComponent<CheckforStone>().DeactivateParticle();
+            }
+            if (Steinslot2.GetComponent<CheckforStone>().socketActivated)
+            {
+                Steinslot2.GetComponent<CheckforStone>().DeactivateParticle();
+            }
+            if (Steinslot3.GetComponent<CheckforStone>().socketActivated)
+            {
+                Steinslot3.GetComponent<CheckforStone>().DeactivateParticle();
+            }
+
+            if (Steinslot1.GetComponent<CheckforStone>().socketActivated && Steinslot2.GetComponent<CheckforStone>().socketActivated && Steinslot3.GetComponent<CheckforStone>().socketActivated)
+            {
+                // open Portal TODO Logik muss noch überarbeitet werden wann das Portal auf und zu geht
+                if (!Portal.GetComponent<PortalManager>().switchPortal)
+                {
+                    Portal.GetComponent<PortalManager>().switchPortal = true;
+                    waitforstones = false;
+                }
+            }
+            
+        }
+
     }
 
     public void pullTrigger()
@@ -100,6 +130,15 @@ public class Bannstab : MonoBehaviour
         Flame1.GetComponent<Collider>().enabled = false;
         Flame2.GetComponent<Collider>().enabled = false;
         validateBannkreis();
+        alreadychecked = true;
+    }
+
+    public void releaseBannstab()
+    {
+        if (!alreadychecked)
+        {
+            validateBannkreis();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -270,6 +309,8 @@ public class Bannstab : MonoBehaviour
     {
         
 
+
+
         if (checkForPattern() == 0) // Checkt auf PortalMuster
         {
             //Aktiviert die Dimension
@@ -300,6 +341,7 @@ public class Bannstab : MonoBehaviour
                 {
                     Steinslot3.GetComponent<CheckforStone>().ActivateParticle();
                 }
+                waitforstones = true;
             }
 
             
@@ -376,6 +418,8 @@ public class Bannstab : MonoBehaviour
         lastTwoCandles[1] = "";
         lineRendererSize = 0;
         firstCandleLit = false;
+        waitforstones = false;
+        alreadychecked = false;
 
         if (Portal.GetComponent<PortalManager>().fliegendeInselActive)
         {

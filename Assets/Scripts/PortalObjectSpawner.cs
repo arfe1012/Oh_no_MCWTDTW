@@ -16,6 +16,7 @@ public class PortalObjectSpawner : MonoBehaviour
     public GameObject prefab3;
 
     AudioSource audioData;
+    AudioSource audioBuildup;
 
     GameObject prefabToSpawn;
     public bool collapse;
@@ -33,7 +34,7 @@ public class PortalObjectSpawner : MonoBehaviour
         UrsprungsPosition = transform.localPosition;
 
         audioData = GetComponent<AudioSource>();
-        
+        audioBuildup = PortalShape.GetComponent<AudioSource>();
 
     }
 
@@ -89,7 +90,7 @@ public class PortalObjectSpawner : MonoBehaviour
     {
         PortalShape.SetActive(true);
         material.SetFloat("_DissolveAmount", 1);
-
+        audioBuildup.Play(0);
         for (float dissolve = 0; dissolve <= 1; dissolve += Time.deltaTime) //Macht die PocketDim größer
         {
             PortalShape.transform.localScale = new Vector3(dissolve, 0.01f, dissolve);
@@ -115,7 +116,7 @@ public class PortalObjectSpawner : MonoBehaviour
             
             yield return null;
         }
-
+        //prefabToSpawn.GetComponent<Rigidbody>().useGravity = false;
     }
 
 
@@ -124,6 +125,7 @@ public class PortalObjectSpawner : MonoBehaviour
         if (GameObject.Find(prefabToSpawn.name + "(Clone)") == null)
         { 
             Instantiate(prefabToSpawn, Sphere.transform.position, Quaternion.identity);
+            //prefabToSpawn.GetComponent<Rigidbody>().useGravity = true;
         }
         else
         {
